@@ -26,3 +26,5 @@ tab
 # nálsedně lze s tabulkou provádět další operace jako např. hledání řádku s chybějící hodnotou v jakémkoliv pásmu
 tab |> 
   filter(if_any(L7_ETMs_1:L7_ETMs_6, is.na))
+
+# poznamenejme, že k zisku souřadnic vektrových geodat existuje v balíčku sf funkce st_coordinates()
