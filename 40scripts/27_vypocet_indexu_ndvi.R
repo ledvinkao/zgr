@@ -25,4 +25,5 @@ names(ndvi) <- "ndvi"
 ggplot() + 
   geom_spatraster(data = ndvi) +
   scale_fill_distiller(palette = "RdYlBu",
-                       direction = -1)
+                       direction = -1) +
+  labs(fill = "ndvi")
