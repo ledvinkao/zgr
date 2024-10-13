@@ -52,3 +52,8 @@ kraje <- kraje |>
   select(-c(geom1, geom2)) |> 
   mutate(obvod = NULL, # i takto lze odstraňovat sloupce
          plocha = NULL)
+
+
+# Literatura --------------------------------------------------------------
+
+# Riedl, O. and Zachar, D.: Forest Amelioration, Elsevier, Amsterdam, 623 pp., 1984.
