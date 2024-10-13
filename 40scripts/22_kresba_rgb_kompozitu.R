@@ -16,8 +16,8 @@ landsat <- rast(system.file("tif/L7_ETMs.tif",
 # RGB kombinace není připravena
 has.RGB(landsat)
 
-# tak ji připravíme vhodným výběrem pásem (každá mise to může mít jinak!)
-RGB(landsat) <- c(3, 1, 2)
+# tak ji připravíme vhodným výběrem pásem (každá mise tohle může mít jinak!)
+RGB(landsat) <- c(3, 2, 1)
 
 has.RGB(landsat)
 
