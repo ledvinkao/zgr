@@ -1,0 +1,58 @@
+
+# Kategorický rastr -------------------------------------------------------
+
+# v předchozím skriptu 29 jsme viděli, že s orientací svahu bude ještě zapotřebí něco udělat
+# zpakujme rychle, co bylo provedeno ve skriptu 29 (bez kreslení) a pokračujme
+
+# načteme balíčky
+xfun::pkg_attach("tidyverse",
+                 "RCzechia", # s tímto se načte automaticky i balíček sf
+                 "terra",
+                 "tidyterra",
+                 "geodata",
+                 install = T)
+
+# pokud je dem již adresáři stažený, jen se načte a nic se nestahuje
+dem <- elevation_30s(country = "CZE",
+                     path = "geodata",
+                     mask = F)
+
+# vypočíátme orientaci ve stupních
+orientace <- terrain(dem,
+                     v = "aspect",
+                     filename = "geodata/CZ_asp.tif",
+                     overwrite = T)
+
+# zjistěme si, čemu se rovná minimum a čemu maximum
+orientace |> 
+  values() |> 
+  range(na.rm = T)
+
+# pojďme hodnoty rastru převést na kategorie
+kat <- orientace |> 
+  values() |> 
+  cut(breaks = c(0,
+                 seq(from = 45,
+                     to = 315,
+                     by = 90),
+                 360),
+      include.lowest = T, # nula bude patřit do prvního intervalu (interval bude zleva uzavřený)
+      labels = c("s1",
+                 "v",
+                 "j",
+                 "z",
+                 "s2")) |> 
+  fct_collapse(s = c("s1", "s2"), # slučujeme dva severy
+               v = "v",
+               j = "j",
+               z = "z")
+
+# funkce rast() může být využita pro dědění geometrie (z rastru orientace odstraňuje hodnoty)
+orientace_kat <- rast(orientace)
+
+# nyní nastavujeme hodnoty kategorií
+values(orientace_kat) <- kat
+
+# balíček terra má vlastí palety, jedna z nich je i pro orientaci svahu
+plot(orientace_kat,
+     col = map.pal("aspect"))
