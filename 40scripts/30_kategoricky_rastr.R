@@ -6,9 +6,7 @@
 
 # načteme balíčky
 xfun::pkg_attach("tidyverse",
-                 "RCzechia", # s tímto se načte automaticky i balíček sf
                  "terra",
-                 "tidyterra",
                  "geodata",
                  install = T)
 
