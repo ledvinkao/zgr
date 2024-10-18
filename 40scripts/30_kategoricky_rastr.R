@@ -39,7 +39,7 @@ kat <- orientace |>
                  "v", # východ
                  "j", # jih
                  "z", # západ
-                 "s2")) |>  # druhý sever
+                 "s2")) |> # druhý sever
   fct_collapse(s = c("s1", "s2"), # slučujeme dva severy
                v = "v",
                j = "j",
