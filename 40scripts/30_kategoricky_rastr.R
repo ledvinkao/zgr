@@ -37,11 +37,11 @@ kat <- orientace |>
                      by = 90),
                  360),
       include.lowest = T, # nula bude patřit do prvního intervalu (interval bude zleva uzavřený)
-      labels = c("s1",
-                 "v",
-                 "j",
-                 "z",
-                 "s2")) |> 
+      labels = c("s1", # prvni sever
+                 "v", # východ
+                 "j", # jih
+                 "z", # západ
+                 "s2")) |>  # druhý sever
   fct_collapse(s = c("s1", "s2"), # slučujeme dva severy
                v = "v",
                j = "j",
@@ -56,3 +56,5 @@ values(orientace_kat) <- kat
 # balíček terra má vlastní palety, jedna z nich je i pro orientaci svahu
 plot(orientace_kat,
      col = map.pal("aspect"))
+
+# poznamenejme, že namísto kombinace funkcí values() a cut() je možné použít i funkci terra::classify() (není možno nastavovat labely) nebo terra::subst() (je možno nastavovat labely)
