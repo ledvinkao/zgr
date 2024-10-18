@@ -37,7 +37,7 @@ kat <- orientace |>
                      by = 90),
                  360),
       include.lowest = T, # nula bude patřit do prvního intervalu (interval bude zleva uzavřený)
-      labels = c("s1", # prvni sever
+      labels = c("s1", # první sever
                  "v", # východ
                  "j", # jih
                  "z", # západ
