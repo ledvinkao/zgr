@@ -33,3 +33,5 @@ tictoc::tic(); landsat[[str_detect(names(landsat), "_1$|_3$")]]; tictoc::toc()
 
 tictoc::tic(); landsat |> 
   select(matches("_1$|_3$")); tictoc::toc()
+
+# protože s vícevrstvým rastrem můžeme často zacházet jako se seznamem, lze pro výběr jedné specifické vrstvy použít i operátor $ následovaný názvem vrstvy
