@@ -6,11 +6,10 @@
 # funkci lze použít i pro extrakci hodnot podél linie, ale hlavně ji lze zaměstnat agregováním hodnot rastru uvnitř polygonu
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # balíček sf je načten automaticky
-                 "terra",
-                 "geodata",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia", # balíček sf je načten automaticky
+                  "terra",
+                  "geodata")
 
 # demonstrujme význam této funkce na sklonitosti svahu v Česku a okolí
 dem <- elevation_30s(country = "CZE",

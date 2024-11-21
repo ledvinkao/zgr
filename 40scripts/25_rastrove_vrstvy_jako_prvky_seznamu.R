@@ -5,9 +5,8 @@
 # někdy může být výhodne takto rastrová geodata konvertovat (např. z důvodu aplikace vektorizované funkce uvnitř funkce map() či walk())
 
 # načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "terra",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "terra")
 
 # načteme rastrová geodata s více vrstvami
 landsat <- rast(system.file("tif/L7_ETMs.tif",

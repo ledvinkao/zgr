@@ -5,10 +5,9 @@
 # potřebujeme k tomu jenom nějakou vrstvu vodních toků
 
 # načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # balíček sf je načítán automaticky
-                 "arcgislayers",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia", # balíček sf je načítán automaticky
+                  "arcgislayers")
 
 # vytvoříme grid čtvercových polygonů
 ctverce_cesko <- republika() |> 

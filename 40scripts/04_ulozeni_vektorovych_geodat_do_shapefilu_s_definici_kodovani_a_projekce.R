@@ -6,9 +6,8 @@
 # budeme se též snažit o uložení informace o kódování znaků v textových atributech (soubor .cpg)
 
 # nejprve načtení balíčků
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf")
 
 # znamým způsobem načteme např. vodní nádrže
 nadrze <- read_sf("geodata/dib_a05_vodni_nadrze/a05_vodni_nadrze.shp",

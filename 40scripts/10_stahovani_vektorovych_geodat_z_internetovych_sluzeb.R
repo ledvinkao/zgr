@@ -7,10 +7,9 @@
 # existuje více balíčků, jejichž funkce umožňují získat z internetu vektorová geodata, ale v současnosti se osvědčil balíček arcgislayers
 
 # načtení balíčků
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 "arcgislayers",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf",
+                  "arcgislayers")
 
 # jedním z mnohých webů, které nabízí otevřená vodohospodářská geodata prostřednictvím takových služeb je portál https://voda.gov.cz/
 # zde můžeme např. nalézt odkaz na vektorovou vrstvu s osovým modelem vodních toků na území Česka a bezprostředního okolí

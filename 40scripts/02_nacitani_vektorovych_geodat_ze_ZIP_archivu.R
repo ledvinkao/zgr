@@ -5,9 +5,8 @@
 # pokud máme stažený ZIP archiv na lokálním disku, není třeba jej rozbalovat, ale lze si načíst soubor s vektorovými geodaty z archivu přímo
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf")
 
 # cestu k ZIP souboru je potřeba doplnit prefixem "/vsizip"
 # takto se můžeme např. podívat, jaká data na nás čekají v archivu

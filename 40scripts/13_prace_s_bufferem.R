@@ -5,9 +5,8 @@
 # buffer je možné vytvářet pomocí funkce st_buffer(), která je součástí balíčku sf
 
 # načtení balíčků
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # sf je načítán automaticky s tímto balíčkem
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia") # sf je načítán automaticky s tímto balíčkem
 
 # zkusme vytvořit 50km buffer okolo hranice Česka
 hranice <- republika() |> 

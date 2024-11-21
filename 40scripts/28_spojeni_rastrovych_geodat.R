@@ -5,10 +5,9 @@
 # pro tento účl lze využít jednoduše funkci c(), jako bychom skládali vektory
 
 # načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "terra",
-                 "tidyterra",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "terra",
+                  "tidyterra")
 
 # postupujme podobně jako ve skriptu 27
 landsat <- rast(system.file("tif/L7_ETMs.tif",

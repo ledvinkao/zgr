@@ -8,10 +8,9 @@
 # pro výběry pomocí geometrie existuje zjednodušený postup s využitím hranatých závorek
 
 # načteme balíčky
-xfun::pkg_attach("tidyverse",
+xfun::pkg_attach2("tidyverse",
                  "RCzechia", # sf je načten automaticky s tímto balíčkem
-                 "sfheaders",
-                 install = T)
+                 "sfheaders")
 
 # nejprve práce s metadaty vodoměrných stanic
 meta <- read_rds("metadata/qdmeta2023.rds") |> 

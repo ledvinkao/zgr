@@ -6,9 +6,8 @@
 # dejme tomu, že kromě toho, ke které pobočce ČHMÚ patří vodoměrná stanice potřebujeme ještě informaci o příslušnosti ke kraji
 
 # načtení balíčků
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # balíček sf se tímto načítá automaticky
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia") # balíček sf se tímto načítá automaticky
 
 # práce s metadaty
 meta <- read_rds("metadata/qdmeta2023.rds") |> 

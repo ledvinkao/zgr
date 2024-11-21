@@ -5,10 +5,9 @@
 # zpakujme rychle, co bylo provedeno ve skriptu 29 (bez kreslení) a pokračujme
 
 # načteme balíčky
-xfun::pkg_attach("tidyverse",
-                 "terra",
-                 "geodata",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "terra",
+                  "geodata")
 
 # pokud je dem již adresáři stažený, jen se načte a nic se nestahuje
 dem <- elevation_30s(country = "CZE",

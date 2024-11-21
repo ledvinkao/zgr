@@ -5,11 +5,10 @@
 # pojďme si ukázat, jak lze tomuto problému čelit např. v případě kategorického rastru
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # balíček sf je načten automaticky
-                 "terra",
-                 "geodata",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia", # balíček sf je načten automaticky
+                  "terra",
+                  "geodata")
 
 dem <- elevation_30s(country = "CZE",
                      path = "geodata",

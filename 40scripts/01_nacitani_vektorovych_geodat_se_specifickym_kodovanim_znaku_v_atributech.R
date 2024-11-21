@@ -11,9 +11,8 @@
 # načtěme potřebné balíčky pro následující načtení souborů, které jsou uvnitř tohoto archivu
 # nejdůležitější je SHP soubor a na ten také musíme odkázat driver podpůrné knihovny GDAL
 # stejně tak budeme muset nastavit správné kódování
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf")
 
 nadrze <- read_sf("geodata/dib_a05_vodni_nadrze/a05_vodni_nadrze.shp",
                   options = "ENCODING=WINDOWS-1250")

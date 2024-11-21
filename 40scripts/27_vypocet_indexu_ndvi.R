@@ -6,10 +6,9 @@
 # ten vychází ze dvou pásem - blízkého infračerveného (u Landsatu 7 pásmo 4) a červeného (u Landsatu 7 pásmo 3)
 
 # načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "terra",
-                 "tidyterra",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "terra",
+                  "tidyterra")
 
 # načteme Landsat data
 landsat <- rast(system.file("tif/L7_ETMs.tif",

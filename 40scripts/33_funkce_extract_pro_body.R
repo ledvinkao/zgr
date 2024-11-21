@@ -5,11 +5,10 @@
 # ukažme význam této funkce pro body (např. lokality vodoměrných stanic v Česku)
 
 # načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 "terra",
-                 "geodata",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf",
+                  "terra",
+                  "geodata")
 
 # načteme soubor s metadaty vodoměrných stanic
 qdmeta <- read_rds("metadata/qdmeta2023.rds")

@@ -6,9 +6,8 @@
 # k tvorbě takových vektorových gridů slouží např. funkce st_make_grid() z balíčku sf
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # balíček sf se načítá automaticky
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia") # balíček sf se načítá automaticky
 
 # chceme-li si např. území Česka pokrýt pravidelnou sítí čtverců o ploše 100 km2, lze postupovat následovně
 ctverce_cesko <- republika() |> 

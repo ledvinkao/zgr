@@ -9,9 +9,8 @@
 # pro tyto účely existuje tzv. Graveliův koeficient
 
 # načteme nejprve potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # balíček sf je načten automaticky
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia") # balíček sf je načten automaticky
 
 # načteme polygony krajů
 kraje <- kraje() |> 

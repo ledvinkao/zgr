@@ -5,9 +5,8 @@
 # doporučovány jsou např. formáty geojson nebo geopackage (přípona .gpkg)
 
 # nejprve načteme balíčky
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf")
 
 # opět načteme správně polygony nádrží
 nadrze <- read_sf("geodata/dib_a05_vodni_nadrze/a05_vodni_nadrze.shp",

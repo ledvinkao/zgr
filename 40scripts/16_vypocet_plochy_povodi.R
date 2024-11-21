@@ -5,10 +5,9 @@
 # řekněme, že chceme zjistit, kolik km2 zaujímají na území Česka jednotlivá úmoří
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 "arcgislayers",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf",
+                  "arcgislayers")
 
 # polygonovou vrstvu s úmořími lze nahradit polygony povodí 1. řádu
 # tuto polygonovou vrstvu lze najít na webu s otevřenými geodaty ĆHMÚ (viz https://open-data-chmi.hub.arcgis.com/)

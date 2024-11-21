@@ -7,9 +7,8 @@
 # tato metadata obsahují dva sloupce se souřadnicemi a přitom víme, že crs je ten s EPSG kódem 32633
 
 # načteme balíčky
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf")
 
 # načteme metadata z RDS souboru (ze složky R projektu s názvem metadata)
 qdmeta <- read_rds("metadata/qdmeta2023.rds")

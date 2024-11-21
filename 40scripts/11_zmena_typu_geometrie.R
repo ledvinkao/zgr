@@ -7,10 +7,9 @@
 # převeďme tento typ na LINESTRING, tedy jednoduché linie
 
 # nejprve načteme nutné balíčky
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 "arcgislayers",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf",
+                  "arcgislayers")
 
 # načteme všechny vodní toky na území Česka, které využívají státní podniky Povodí a rezort Ministerstva zemědělství
 toky <- arc_read("https://agrigis.cz/server/rest/services/ISVSVoda/osy_vodnich_linii/FeatureServer/0") |> 

@@ -9,8 +9,8 @@
 # ukažme, jak lze načíst soubor s rastrovými geodaty pomocí funkce rast() balíčku terra
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "terra")
+xfun::pkg_attach2("tidyverse",
+                  "terra")
 
 # podívejme se, jaké tif soubory přichází s balíčkem stars a jaké s balíčkem terra
 dir(system.file(package = "stars"),

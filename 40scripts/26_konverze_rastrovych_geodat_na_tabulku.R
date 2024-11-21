@@ -5,9 +5,8 @@
 # autor balíčku terra na to samozřejmě pamatuje také
 
 # načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "terra",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "terra")
 
 # načteme rastrová geodata (ideálně s více vrstvami)
 landsat <- rast(system.file("tif/L7_ETMs.tif",

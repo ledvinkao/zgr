@@ -5,9 +5,8 @@
 
 # nejprve načteme potřebné balíčky
 # předpokládáme ale, že máme k dispozici i balíček stars s daty
-xfun::pkg_attach("tidyverse",
-                 "terra",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "terra")
 
 # načteme soubor
 landsat <- rast(system.file("tif/L7_ETMs.tif",

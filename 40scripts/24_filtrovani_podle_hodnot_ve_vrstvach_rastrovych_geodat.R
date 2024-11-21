@@ -6,10 +6,9 @@
 # proto lze použít funkci filter() podobně jako u tabulek
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "terra",
-                 "tidyterra",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "terra",
+                  "tidyterra")
 
 # načteme soubor s rastrovými geodaty
 landsat <- rast(system.file("tif/L7_ETMs.tif",

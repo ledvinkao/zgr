@@ -6,10 +6,9 @@
 # na území Česka je pro tyto účely vhodné využití crs s kódem EPSG:5514 (viz https://epsg.io/5514)
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # balíček sf je načítán automaticky
-                 "arcgislayers",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia", # balíček sf je načítán automaticky
+                  "arcgislayers")
 
 # proveďme výpočet jen pro toky uvnitř Jihočeského kraje
 jihocesky <- kraje() |> 

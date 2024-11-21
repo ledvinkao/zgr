@@ -5,10 +5,9 @@
 # ukažme, jak to lze provést nativně s geodaty typu SpatRaster, a také, jak pomocí funkce select() z balíčku tidyterra
 
 # nejpre načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "terra",
-                 "tidyterra",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "terra",
+                  "tidyterra")
 
 # načteme soubor
 landsat <- rast(system.file("tif/L7_ETMs.tif",

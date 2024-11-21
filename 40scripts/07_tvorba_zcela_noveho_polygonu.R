@@ -5,10 +5,9 @@
 # toto je velmi častý případ, kdy např. za pomoci takového polygonu stahujeme z nějakého serveru další geografická data
 
 # načteme balíčky
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # balíček sf se načítá automaticky
-                 "sfheaders",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia", # balíček sf se načítá automaticky
+                  "sfheaders")
 
 # dejme tomu, že zájmovým regionem je sférický obdélník rozkládající se mezi 16,35-18,85° v.z.d. a 49,3-50,2° s.z.š.
 

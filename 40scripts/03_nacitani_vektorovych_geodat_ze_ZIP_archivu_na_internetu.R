@@ -4,9 +4,8 @@
 # leckdy ZIP soubor není ani nutné stahovat a vektorová geodata si lze vzít rovnou z archivu umístěného na internetu
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf")
 
 # k tomu, abychom byli v takovém načítání úspěšní, potřebujeme znát internetovou adresu souboru (končící na ".zip")
 # tuto adresu vložíme do naší "načítací" funkce, kde ale navíc použijeme tzv. řetězení prefixů

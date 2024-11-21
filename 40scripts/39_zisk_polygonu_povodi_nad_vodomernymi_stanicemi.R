@@ -2,10 +2,9 @@
 # Získ polygonů povodí nad vodoměrnými stanicemi v Česku ------------------
 
 # načtení balíčků
-xfun::pkg_attach("tidyverse",
-                 "sf",
-                 "arcgislayers",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "sf",
+                  "arcgislayers")
 
 # budeme potřebovat dobré připojení k internetu, protože podkladové vrstvy stahujeme
 # předpokládá se, že známe adresu polygonové vrstvy s rozvodnicemi

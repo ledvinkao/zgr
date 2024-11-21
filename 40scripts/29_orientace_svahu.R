@@ -7,12 +7,11 @@
 # s těmito modely můžeme provádět různé výpočty související terénem
 
 # nejprve načteme potřebné balíčky
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # s tímto se načte automaticky i balíček sf
-                 "terra",
-                 "tidyterra",
-                 "geodata",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia", # s tímto se načte automaticky i balíček sf
+                  "terra",
+                  "tidyterra",
+                  "geodata")
 
 # využijeme funkci elevation_30s, kde ještě specifikujeme, že se chceme zaměřit na území Česka
 # zakážeme maskování

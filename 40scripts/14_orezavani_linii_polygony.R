@@ -6,10 +6,9 @@
 # pozor! neplést si tuto funkci s funkcí st_intersects(), která dělá něco jiného
 
 # načteme balíčky
-xfun::pkg_attach("tidyverse",
-                 "RCzechia", # balíček sf je načítán automaticky
-                 "arcgislayers",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia", # balíček sf je načítán automaticky
+                  "arcgislayers")
 
 # řekněme, že budeme chtít oříznout vrstvu vodních toků obrysem Jihočeského kraje
 

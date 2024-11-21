@@ -2,11 +2,10 @@
 # Tvorba tematické mapy z webu kurzu --------------------------------------
 
 # načteme potřebné balíčky (najednou)
-xfun::pkg_attach("tidyverse",
-                 "RCzechia",
-                 "czso",
-                 "ggspatial",
-                 install = T)
+xfun::pkg_attach2("tidyverse",
+                  "RCzechia",
+                  "czso",
+                  "ggspatial")
 
 # předpokládá se dobré připojení k internetu, protože podkladová data jsou zde stahována
 
