@@ -19,7 +19,7 @@ nadrze <- st_read("/vsizip/geodata/dib_A05_Vodni_nadrze.zip",
                   options = "ENCODING=windows-1250")
 
 # objevuje se varování, že v ZIP souboru je více souborů k načtení a že byl vybran ten první
-# to nám ale v tuto chíli vůbec nevadí
+# to nám ale v tuto chvíli vůbec nevadí
 # jaký je rozdíl v načteném objektu oproti tomu ze skriptu 01?
 
 # výsledek nemá třídu tibble, která je mnohem přehlednější
