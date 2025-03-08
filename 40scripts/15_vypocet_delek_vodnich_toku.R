@@ -32,7 +32,8 @@ toky_jihocesky <- toky |>
 # ale rovnou zaokrouhlíme tak, abychom mohli určovat i délku v metrech
 toky_jihocesky <- toky_jihocesky |> 
   mutate(delka = st_length(geometry) |> 
-           units::set_units(km) |> 
+           units::set_units("km") |> 
            round(3))
 
 # samozřejmě je potřeba si uvědomit, že délky odpovídají oříznutým liniím!
+# výpočty délek je také možné zakládat na tzv. geodetických mírách
