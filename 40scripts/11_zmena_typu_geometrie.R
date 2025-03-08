@@ -23,6 +23,6 @@ toky_jednoduche <- toky |>
 # existuje nějaký vodní tok, který je v modelu (nesprávně) rozdělen na více částí?
 toky_jednoduche |> 
   st_drop_geometry() |> # raději se zbavíme geometrie, jinak by byl proces velmi zdlouhavý
-  group_by(idvt) |> 
+  group_by(idvt) |> # grupujeme podle ID vodního toku
   count() |> 
   filter(n > 1)
