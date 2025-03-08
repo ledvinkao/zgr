@@ -30,11 +30,13 @@ meta <- meta$data$data$values |>
 # funkce st_as_sf() je rozdílná od funkce st_sf()
 # funkce st_as_sf() tvoří geometrii nově, kdežto funkce st_sf() již nějakou geometrii v tabulce vyžaduje
 meta <- meta |> 
-  st_as_sf(coords = c("geogr1", "geogr2"),
-           crs = 4326)
+  mutate(across(geogr1:plo_sta, # měníme typ některých sloupců (u kterých to má smysl, převedeme na numeric)
+                as.numeric)) |> 
+  st_as_sf(coords = c("geogr2", "geogr1"), # nejdřív délka a pak šířka
+           crs = 4326) |> 
+  st_transform(32633) # raději transformujeme, abychom předešli problémům se záměnou pořadí souřadnic, jak to dělají dnešní verze knihovny PROJ
 
-# nakonec ještě můžeme upravit typy sloupců
-meta <- meta |> 
-  mutate(across(dryh:plo_sta,
-                as.numeric)
-  )
+# a uložíme pro další práci
+meta |> 
+  write_rds("metadata/wgmeta2023.rds",
+            compress = "gz")
