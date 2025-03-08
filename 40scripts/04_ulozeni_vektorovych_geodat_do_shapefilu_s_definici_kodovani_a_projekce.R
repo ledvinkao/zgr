@@ -2,7 +2,7 @@
 # Uložení do SHP souboru se standardním kódováním a projekcí --------------
 
 # v ČHMÚ je standardní projekcí crs s EPSG kódem 32633
-# navíc je žádoucí, aby soubor měl jasně tuto projekci po uložení jasně definovanou v .prj souboru
+# navíc je žádoucí, aby soubor měl tuto projekci po uložení jasně definovanou v .prj souboru
 # budeme se též snažit o uložení informace o kódování znaků v textových atributech (soubor .cpg)
 
 # nejprve načtení balíčků

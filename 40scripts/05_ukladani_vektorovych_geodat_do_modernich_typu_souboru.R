@@ -2,7 +2,7 @@
 # Ukládání vektorových geodat do modernějších typů souborů ----------------
 
 # ve světě GIS existují mnohem modernější a vhodnější typy souborů na ukládání geodat
-# doporučovány jsou např. formáty geojson nebo geopackage (přípona .gpkg)
+# doporučovány jsou např. formáty geojson nebo geopackage (přípona .gpkg), v současnosti i geoparquet (přípona .parquet)
 
 # nejprve načteme balíčky
 xfun::pkg_attach2("tidyverse",
