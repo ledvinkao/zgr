@@ -12,7 +12,7 @@ xfun::pkg_attach2("tidyverse",
 # chceme-li si např. území Česka pokrýt pravidelnou sítí čtverců o ploše 100 km2, lze postupovat následovně
 ctverce_cesko <- republika() |> 
   st_transform(3035) |> 
-  st_make_grid(cellsize = units::set_units(10, km))
+  st_make_grid(cellsize = units::set_units(10, "km"))
 
 # nakreslíme situaci
 ggplot() + 
@@ -29,4 +29,4 @@ ctverce_cesko <- ctverce_cesko |>
   st_sf() |> 
   st_set_geometry("geometry") |> 
   mutate(plocha = st_area(geometry) |> 
-           units::set_units(km2))
+           units::set_units("km2"))
