@@ -14,5 +14,5 @@
 xfun::pkg_attach2("tidyverse",
                   "sf")
 
-nadrze <- read_sf("geodata/dib_a05_vodni_nadrze/a05_vodni_nadrze.shp",
+nadrze <- read_sf("geodata/dib_a05_vodni_nadrze/a05_vodni_nadrze.shp", # předpokládáme umístění staženého souboru ve složce geodata našeho R projektu
                   options = "ENCODING=WINDOWS-1250")

@@ -1,5 +1,5 @@
 
-# Načtení vektorových geodat přímo ze ZIP archivu (uloženého --------------
+# # Načtení vektorových geodat přímo ze ZIP archivu (uloženého) -----------
 
 # shapefile zabalený v ZIP archivu je dosti častým jevem
 # pokud máme stažený ZIP archiv na lokálním disku, není třeba jej rozbalovat, ale lze si načíst soubor s vektorovými geodaty z archivu přímo
