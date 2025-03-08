@@ -1,5 +1,5 @@
 
-# # Výběr bodů na základě polohy vzhledem k polygonu ------------- --------
+# Výběr bodů na základě polohy vzhledem k polygonu ------------------------
 
 # dejme tomu, že jsme se rozhodli vybrat vodoměrné stanice, které leží uvnitř daného obdélníku
 # pak provedeme opačný výběr
