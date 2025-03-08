@@ -3,7 +3,7 @@
 
 # někdy se potřebujeme před načítáním geodat jen podívat, co je v archivu nebo ve složce k dispozici
 # funkcí st_layers() s balíčku sf lze takto složky prohlížet
-# využijme např. toho, že již víme, že z ZIP souboru ze skriptu 03 je více takových vrstev
+# využijme např. toho, že již víme, že v ZIP souboru ze skriptu 03 je více takových vrstev
 
 # načteme potřebný balíček
 library(sf)
