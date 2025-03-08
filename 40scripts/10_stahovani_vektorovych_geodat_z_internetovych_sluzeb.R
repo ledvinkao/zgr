@@ -1,7 +1,7 @@
 
 # Stahování vektorových geodat z internetu --------------------------------
 
-# poslední dobou se množí případy, kdy jsou různá vektorová geodata sdílena prostřednictvím různých severů
+# poslední dobou se množí případy, kdy jsou různá vektorová geodata sdílena prostřednictvím různých serverů
 # často se setkáme s tzv. ArcGIS REST API službami, což je důsledek toho, že mnohé instituce využívají komerční licence firmy ESRI a nemají vlastní servery pro tento účel
 # často se tedy setkáme s vektorovými geodaty nabízenými přes tzv. FeatureServery nebo MapServery
 # existuje více balíčků, jejichž funkce umožňují získat z internetu vektorová geodata, ale v současnosti se osvědčil balíček arcgislayers
