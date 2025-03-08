@@ -44,14 +44,14 @@ toky_rezy <- toky |>
 toky_rezy_sumy <- toky_rezy |> 
   group_by(id) |> 
   summarize(suma = sum(st_length(geometry) |> 
-                         units::set_units(km) |> 
+                         units::set_units("km") |> 
                          round(3)))
 
 # protože jsme čvterce ořízli hranicí Česka, nyní nebudou všechny mít 100 km2
 # vypočítejme plochy polygonů
 ctverce_cesko <- ctverce_cesko |> 
   mutate(plocha = st_area(geometry) |> 
-           units::set_units(km2) |> 
+           units::set_units("km2") |> 
            round(2))
 
 # propojme tabulky na základě klíče id
@@ -70,7 +70,7 @@ propojeno <- propojeno |>
 
 ggplot() + 
   geom_sf(data = propojeno,
-          aes(fill = log10(hustota))) +
+          aes(fill = log10(hustota))) + # pro zvýraznění rozdílů
   scale_fill_distiller(palette = "Blues",
                        direction = 1) +
   labs(fill = "river density \n(log10)")
