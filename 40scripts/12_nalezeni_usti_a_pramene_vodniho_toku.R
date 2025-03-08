@@ -43,7 +43,7 @@ pramen <- tvltava |>
   as_tibble() |> 
   st_sf()
 
-# polohu usti i pramene si můžeme vykreslit v dynamické mapě
+# polohu ustí i pramene si můžeme vykreslit v dynamické mapě
 usti <- usti |> 
   mutate(typ = "usti")
 
