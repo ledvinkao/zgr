@@ -27,7 +27,7 @@ mat <- matrix(c(16.35, 49.3,
 obdelnik <- sfc_polygon(mat)
 
 # přidáme souřadnicový systém a změníme typ objektu na simple feature
-# pojmenujeme tez sloupec s geometrií
+# pojmenujeme též sloupec s geometrií
 # a abychom byli úplně spokojeni, dodáme objektu ještě třídu tibble
 obdelnik <- obdelnik |>
   st_sf() |> 

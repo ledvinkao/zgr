@@ -3,19 +3,38 @@
 
 # někdy se stane, že nemáme k dispozici přímo vektorovou vrstvu
 # můžeme ale využít znalosti souřadnic a souřadnicového referenčního systému (crs)
-# mějme např. metadata vodoměrných stanic, které se dají získat z https://isvs.chmi.cz/
-# tato metadata obsahují dva sloupce se souřadnicemi a přitom víme, že crs je ten s EPSG kódem 32633
+# mějme metadata vodoměrných stanic, které se dají získat z JSON souboru s adresou https://opendata.chmi.cz/hydrology/historical/metadata/meta1.json
+# tato metadata obsahují dva sloupce se souřadnicemi a přitom víme, že crs je ten s EPSG kódem 4326
 
 # načteme balíčky
+# zde ještě navíc jsonlite pro jednodušší práci s JSON soubory
 xfun::pkg_attach2("tidyverse",
+                  "jsonlite",
                   "sf")
 
-# načteme metadata z RDS souboru (ze složky R projektu s názvem metadata)
-qdmeta <- read_rds("metadata/qdmeta2023.rds")
+# soubor si upravíme do tabulky
+# využijeme přitom znalost o struktuře (kde jsou data a kde jsou hlavičky)
+url <- "https://opendata.chmi.cz/hydrology/historical/metadata/meta1.json"
+
+meta <- jsonlite::fromJSON(url) # někdy je nutné nastavit v souboru .Renviron CURL_SSL_BACKEND=openssl
+
+meta <- meta$data$data$values |> 
+  as.data.frame() |> 
+  as_tibble() |> 
+  set_names(meta$data$data$header |> 
+              str_split(",") |> 
+              unlist()) |> 
+  janitor::clean_names() # názvy sloupců upravíme na rozumnější
 
 # vektorovou vrstvu (simple feature collection) získáme pomocí funkce st_as_sf()
 # funkce st_as_sf() je rozdílná od funkce st_sf()
 # funkce st_as_sf() tvoří geometrii nově, kdežto funkce st_sf() již nějakou geometrii v tabulce vyžaduje
-qdmeta <- qdmeta |> 
-  st_as_sf(coords = c("UTM_X", "UTM_Y"),
-                      crs = 32633)
+meta <- meta |> 
+  st_as_sf(coords = c("geogr1", "geogr2"),
+           crs = 4326)
+
+# nakonec ještě můžeme upravit typy sloupců
+meta <- meta |> 
+  mutate(across(dryh:plo_sta,
+                as.numeric)
+  )

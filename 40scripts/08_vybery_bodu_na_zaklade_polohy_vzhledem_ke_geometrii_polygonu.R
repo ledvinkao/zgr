@@ -1,5 +1,5 @@
 
-# Výběr bodů na základě polohy vhledem k polygonu -------------------------
+# # Výběr bodů na základě polohy vzhledem k polygonu ------------- --------
 
 # dejme tomu, že jsme se rozhodli vybrat vodoměrné stanice, které leží uvnitř daného obdélníku
 # pak provedeme opačný výběr
@@ -9,23 +9,21 @@
 
 # načteme balíčky
 xfun::pkg_attach2("tidyverse",
-                 "RCzechia", # sf je načten automaticky s tímto balíčkem
-                 "sfheaders")
+                  "RCzechia", # sf je načten automaticky s tímto balíčkem
+                  "sfheaders")
 
 # nejprve práce s metadaty vodoměrných stanic
-meta <- read_rds("metadata/qdmeta2023.rds") |> 
-  st_as_sf(coords = c("UTM_X", "UTM_Y"),
-           crs = 32633) |> 
-  st_transform(4326) # potřebujeme mít stejný crs
+meta <- read_rds("metadata/wgmeta2023.rds") |> 
+  st_transform(4326) # abychom měli srovnatelné crs
 
 # tvorba obdélníka
 obdelnik <- sfc_polygon(matrix(c(16.35, 49.3,
-                                18.85, 49.3,
-                                18.85, 50.2,
-                                16.35, 50.2,
-                                16.35, 49.3),
-                              ncol = 2,
-                              byrow = T)) |> 
+                                 18.85, 49.3,
+                                 18.85, 50.2,
+                                 16.35, 50.2,
+                                 16.35, 49.3),
+                               ncol = 2,
+                               byrow = T)) |> 
   st_sf() |> 
   st_set_crs(4326) |> 
   st_set_geometry("geom") |> 
