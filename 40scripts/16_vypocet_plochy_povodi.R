@@ -33,7 +33,7 @@ umori |>
 umori <- umori |> 
   st_transform(3035) |> 
   mutate(plocha = st_area(geometry) |> 
-           units::set_units(km2) |> 
+           units::set_units("km2") |> 
            round(2))
 
 # vytáhneme si sloupce, které nás zajímají, a zahodíme geometrii
