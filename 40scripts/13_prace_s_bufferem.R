@@ -13,7 +13,7 @@ hranice <- republika() |>
   st_transform(32633) # při práci s buffery je vhodné převést na rovinnou projekci (se souřadnicemi v metrech)
 
 hran_buf <- hranice |> 
-  st_buffer(units::set_units(50, km)) # zde využíváme funkci na nsatavování jednotek z balíčku units (přitom můžeme a nemusíme psát uvozovky před a po zkratkách jednotek)
+  st_buffer(units::set_units(50, "km")) # zde využíváme funkci na nastavování jednotek z balíčku units (přitom můžeme a nemusíme psát uvozovky před a po zkratkách jednotek, ale někdy to je vhodnější)
 
 # nakrelseme situaci
 ggplot() + 
@@ -30,7 +30,7 @@ ggplot() +
 # zde tedy půjde o smrštění polygonu
 # tady je už skutečně nutné mít data v rovinné projekci, jinak se vytvoří prázdná geometrie
 hran_buf2 <- hranice |> 
-  st_buffer(units::set_units(-10, km))
+  st_buffer(units::set_units(-10, "km"))
 
 ggplot() + 
   geom_sf(data = hranice,
