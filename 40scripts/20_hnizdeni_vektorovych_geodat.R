@@ -21,8 +21,7 @@ kraje <- kraje() |>
 meta <- read_rds("metadata/wgmeta2023.rds") |> 
   st_transform(4326) |> 
   st_join(kraje) |> 
-  filter(!is.na(NAZ_CZNUTS3)) |> # zbavujeme se řádků, kde kraj i tak nakonec není
-  st_drop_geometry() # geometrii už nepotřebujeme
+  filter(!is.na(NAZ_CZNUTS3)) # zbavujeme se řádků, kde kraj i tak nakonec není
 
 # nyní můžeme hnízdit dle kraje a počítat např. medián plochy povodí nad stanicí v každém kraji
 meta <- meta |> 
@@ -33,11 +32,10 @@ meta <- meta |>
 # pomocí funkcionálnío programování získáváme nový sloupec s mediánovou plochou
 meta <- meta |> 
   mutate(medarea = map_dbl(data,
-                           \(x) pull(x, 
-                                     plo_sta) |> 
+                           \(x) st_drop_geometry(x) |> 
+                             pull(plo_sta) |> 
                              median(x, 
                                     na.rm = T) |> # kyby se náhodou vyskytla chybějící hodnota
-                             round(2) |> 
-                             units::set_units("km2")
+                             round(2)
   )
   )
