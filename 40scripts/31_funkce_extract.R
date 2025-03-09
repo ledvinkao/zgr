@@ -30,10 +30,10 @@ values(sklon) |>
 kraje <- kraje()
 
 # funkce crs() pochází sice z balíčku terra, ale od nějaké doby ji lze použít i na objekt třídy sf
-crs(kraje) == crs(sklon_kat)
+crs(kraje) == crs(sklon)
 
 # aplikujme funkci extract() a vypočítejme např. mediánový sklon v každém kraji
-# povšimněme si, že funkce má i parametri bind, kterým dáváme najevo, že výsledné hodnoty chceme připojit do tabulky vektorové vrstvy
+# povšimněme si, že funkce má i argument bind, kterým dáváme najevo, že výsledné hodnoty chceme připojit do tabulky vektorové vrstvy
 # jinak by výsledkem byla jen matice
 # v tomto případě vlastně ani nepotřebujeme ID polygonu
 kraje <- extract(sklon, # zde je zvykem, že na prvním míste je vždy rastr
@@ -43,4 +43,4 @@ kraje <- extract(sklon, # zde je zvykem, že na prvním míste je vždy rastr
                  ID = F) |> # výsledkem je nativní vektorový objekt balíčku terra (SpatVector)
   st_as_sf() # ten lze převést na simple feature
 
-# nastavení parametru exact = T sice dá přesné podíly buněk podle hranice polygonum, ale výpočet pak trvá mnohem déle
+# nastavení argumentu exact = T sice dá přesné podíly buněk podle hranice polygonu, ale výpočet pak trvá mnohem déle
