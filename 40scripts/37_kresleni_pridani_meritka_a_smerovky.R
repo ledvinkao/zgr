@@ -4,7 +4,7 @@
 # směrovka není ani tak důležitá, máme-li k dispozici nástroje pro kreslení souřadnicové sítě
 # grafické měříto by naopak mělo být součástí každé mapy
 
-# demonstrujme tedy přidání těchto mapových prvků pomocí funcí balíčku tmap
+# demonstrujme tedy přidání těchto mapových prvků pomocí funkcí balíčku tmap
 # navážeme přitom na skript 36, kde již máme započatou práci s facetami
 
 # načteme potřebné funkce
@@ -25,7 +25,9 @@ toky_vyb <- toky |>
 # zkusíme přidat i hranice Česka
 h <- republika()
 
-tm_shape(h) + 
+# a kreslíme
+# graf si můžeme napřed uložit do nového objektu
+plot <- tm_shape(h) + 
   tm_graticules() +
   tm_borders(col = "purple",
              lwd = 3) + 
@@ -39,3 +41,7 @@ tm_shape(h) +
   tm_scalebar(position = c("LEFT",
                            "BOTTOM")) +
   tm_layout(compass.show.labels = F) # aby se neukazovalo písmeno N pro sever:-)
+
+# výsledek můžeme uložit pomocí funkce tmap_save()
+tmap_save(plot,
+          "results/vybrane_reky.pdf")
