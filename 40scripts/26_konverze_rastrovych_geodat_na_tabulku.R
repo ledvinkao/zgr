@@ -16,7 +16,7 @@ landsat <- rast(system.file("tif/L7_ETMs.tif",
 # někdy se může hodit dostat do tabulky i souřadnice x a y, tak nastavíme argument xy na pravdu
 # starý formát data frame si ještě můžeme převést na třídu tibble
 tab <- as.data.frame(landsat,
-                     xy = T) |> 
+                     xy = T) |> # dobré je prostudovat i další nabízené argumenty, jako je možnost získání dlouhého formátu tabulky apod.
   as_tibble()
 
 # vytiskneme aspoň část tabulky do konzole
@@ -26,4 +26,4 @@ tab
 tab |> 
   filter(if_any(L7_ETMs_1:L7_ETMs_6, is.na))
 
-# poznamenejme, že k zisku souřadnic vektrových geodat existuje v balíčku sf funkce st_coordinates()
+# poznamenejme, že k zisku souřadnic vektorových geodat existuje v balíčku sf funkce st_coordinates()

@@ -29,7 +29,7 @@ str(landsatl)
 
 glimpse(landsatl)
 
-# zkusme nyni jednotlive vrstvy zapsat do souborů na disk zvlášť
+# zkusme nyní jednotlivé vrstvy zapsat do souborů na disk zvlášť
 # rovnou pojďme měřit i čas procesu
 tictoc::tic(); landsatl |> 
   walk(\(x) writeRaster(x,
