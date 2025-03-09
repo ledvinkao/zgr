@@ -2,7 +2,7 @@
 # Spojení rastrových geodat -----------------------------------------------
 
 # někdy se hodí přidání výsledné vrstvy k datům, ze kterých byla tato vrstva počítána
-# pro tento účl lze využít jednoduše funkci c(), jako bychom skládali vektory
+# pro tento účel lze využít jednoduše funkci c(), jako bychom skládali vektory či seznamy
 
 # načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
@@ -25,7 +25,7 @@ names(landsat)
 
 # můžeme opět kreslit
 ggplot() + 
-  geom_spatraster(data = landsat[[7]]) +
+  geom_spatraster(data = landsat$ndvi) +
   scale_fill_distiller(palette = "RdYlBu",
                        direction = -1) +
   labs(fill = "ndvi")
