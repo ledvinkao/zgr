@@ -38,4 +38,4 @@ tm_shape(h) +
                           "top")) + 
   tm_scalebar(position = c("LEFT",
                            "BOTTOM")) +
-  tm_layout(compass.show.labels = F)
+  tm_layout(compass.show.labels = F) # aby se neukazovalo písmeno N pro sever:-)
