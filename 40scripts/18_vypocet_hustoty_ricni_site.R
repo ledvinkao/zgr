@@ -12,7 +12,7 @@ xfun::pkg_attach2("tidyverse",
 # vytvoříme grid čtvercových polygonů
 ctverce_cesko <- republika() |> 
   st_transform(3035) |> 
-  st_make_grid(cellsize = units::set_units(10, km)) |> 
+  st_make_grid(cellsize = units::set_units(10, "km")) |> 
   st_sf() |> 
   as_tibble() |> 
   st_sf() |> 
