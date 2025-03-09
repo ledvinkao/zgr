@@ -22,18 +22,18 @@ kraje <- kraje() |>
 
 # aplikujme anonymní funkci
 tictoc::tic(); kraje_a <- extract(dem,
-                                kraje,
-                                fun = \(x) mean(x) |> 
-                                  round(1),
-                                bind = T) |> 
+                                  kraje,
+                                  fun = \(x) mean(x) |> 
+                                    round(1),
+                                  bind = T) |> 
   st_as_sf() |> 
   as_tibble() |> 
   st_sf(); tictoc::toc()
 
 tictoc::tic(); kraje_b <- extract(dem,
-                                kraje,
-                                fun = mean,
-                                bind = T) |> 
+                                  kraje,
+                                  fun = mean,
+                                  bind = T) |> 
   st_as_sf() |> 
   as_tibble() |> 
   st_sf() |> 
