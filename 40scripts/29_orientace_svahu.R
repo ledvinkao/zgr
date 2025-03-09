@@ -4,7 +4,7 @@
 # orientace svahu je důležitým faktorem ovlivňujícím celou řadu hydrometeorologických prvků
 # při práci s R si můžeme často vystačit s datasety, které nabízí balíček geodata
 # tento balíček obsahuje i funkci pro stahování rastru s nadmořskými výškami (angl. digital elevation model, DEM)
-# s těmito modely můžeme provádět různé výpočty související terénem
+# s těmito modely můžeme provádět různé výpočty související s terénem
 
 # nejprve načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
