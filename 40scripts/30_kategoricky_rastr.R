@@ -2,14 +2,14 @@
 # Kategorický rastr -------------------------------------------------------
 
 # v předchozím skriptu 29 jsme viděli, že s orientací svahu bude ještě zapotřebí něco udělat
-# zpakujme rychle, co bylo provedeno ve skriptu 29 (bez kreslení) a pokračujme
+# zopakujme rychle, co bylo provedeno ve skriptu 29 (bez kreslení) a pokračujme
 
 # načteme balíčky
 xfun::pkg_attach2("tidyverse",
                   "terra",
                   "geodata")
 
-# pokud je dem již adresáři stažený, jen se načte a nic se nestahuje
+# pokud je dem již v adresáři stažený, jen se načte a nic se nestahuje
 dem <- elevation_30s(country = "CZE",
                      path = "geodata",
                      mask = F)
@@ -52,6 +52,20 @@ values(orientace_kat) <- kat
 
 # balíček terra má vlastní palety, jedna z nich je i pro orientaci svahu
 plot(orientace_kat,
-     col = map.pal("aspect"))
+     col = map.pal("aspect",
+                   n = 4))
 
 # poznamenejme, že namísto kombinace funkcí values() a cut() je možné použít i funkci terra::classify() (není možno nastavovat labely) nebo terra::subst() (je možno nastavovat labely)
+
+# balíček tidyterra nabízí další vhodné palety barev pro kreslení ve smyslu ggplot
+library(tidyterra)
+
+ggplot() + 
+  geom_spatraster(data = orientace_kat) + 
+  scale_fill_grass_d(palette = "aspect") + 
+  labs(fill = "orientace svahu\n(kategorie)")
+
+ggplot() + 
+  geom_spatraster(data = orientace) +
+  scale_fill_grass_c(palette = "aspectcolr") + 
+  labs(fill = "orientace svahu\n(úhly)")
