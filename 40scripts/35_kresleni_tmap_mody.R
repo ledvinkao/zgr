@@ -35,6 +35,5 @@ tm_shape(kraje) +
 tmap_mode("plot")
 
 # a takto lze kreslit jen hranice
-tmap_mode("plot")
 tm_shape(kraje) +
   tm_borders(col = "purple")
