@@ -70,7 +70,7 @@ propojeno <- propojeno |>
 
 ggplot() + 
   geom_sf(data = propojeno,
-          aes(fill = log10(hustota))) + # pro zvýraznění rozdílů
+          aes(fill = log10(hustota))) + # pro zvýraznění rozdílů (původně km/km2)
   scale_fill_distiller(palette = "Blues",
                        direction = 1) +
   labs(fill = "river density \n(log10)")
