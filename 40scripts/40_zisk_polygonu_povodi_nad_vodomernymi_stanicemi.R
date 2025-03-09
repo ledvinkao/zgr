@@ -1,89 +1,82 @@
 
 # Získ polygonů povodí nad vodoměrnými stanicemi v Česku ------------------
 
-# načtení balíčků
+# v hydrologii často potřebujeme pracovat s povodími nad vodoměrnými stanicemi
+# důvodem může být porovnání průtokové časové řady s řadami získanými z klimatologických měření (např. ve formě gridu)
+# existují sice podrobné vrstvy rozvodnic pro území Česka (např. povodí 4. řádu), ale ta v tomto smyslu hydrologa neuspokojí
+# budeme si tedy muset takovou vrstvu odvodit sami
+# předpokládá se velmi dobré připojení k internetu, jelikož potřebné geografické vrstvy budeme stahovat
+
+# načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
                   "sf",
-                  "arcgislayers")
+                  "arcgislayers", 
+                  "multidplyr") # pro moderní paralelizaci s využitím tidyverse sloves a tabulek třídy tibble
 
-# budeme potřebovat dobré připojení k internetu, protože podkladové vrstvy stahujeme
-# předpokládá se, že známe adresu polygonové vrstvy s rozvodnicemi
-# adresu včetně čísla vrstvy najdeme mezi otevřenými prostorovými daty ĆHMÚ (https://open-data-chmi.hub.arcgis.com/)
-# klidně si dovolíme načíst celou nejpodrobnější vrstvu s rozšířenými rozvodnicemi 4. řádu
-# někdy je potřeba následující řádky spustit vícekrát, aby proces načítání skončil úspěchem
-# nakonec ještě převádíme na přehlednější tibble simple feature
-# jen pro ukázku si děláme pořádek v chybějících hodnotách v textových polích
-rozv <- arc_read("https://services1.arcgis.com/ZszVN9lBVA5x4VmX/arcgis/rest/services/rozvodnice5G_4_radu_plus/FeatureServer/6") |> 
+# získejme všechny nejmenší polygony povodí na podkladě informací na https://open-data-chmi.hub.arcgis.com/datasets/chmi::rozvodnice-povod%C3%AD-4-%C5%99%C3%A1du-roz%C5%A1%C3%AD%C5%99en%C3%A9/about
+# na konci si ještě upravujeme textové řetězce, aby správně obsahovaly znaky NA pro chybějící hodnoty (může se hodit i pro jinou práci)
+catch <- arc_read("https://services1.arcgis.com/ZszVN9lBVA5x4VmX/arcgis/rest/services/rozvodnice5G_4_radu_plus/FeatureServer/6") |> 
   as_tibble() |> 
   st_sf() |> 
   mutate(across(where(is.character),
                 \(x) if_else(x == "", NA, x)))
 
-# omezíme se jen na řádky, kde je stanice
-# jelikož ČHMÚ pro fungující stanice používá identifikátory připomínající šestimístné číslo (s vodícími nulami), dovolíme si využít vedlejšího efektu
-stanice <- rozv |> 
+# zachovejme si tabulku jen s řádky, které obsahují řádky s ID vodoměrných stanic
+# využíváme vedlejšího efektu (nezvyklá ID, tj. některé dbcn, jsou konverovány na hodnoty NA uvnitř funkce filter())
+# vybereme jen ty nejdůležitější sloupce před napojením části s geometriemi
+stations <- catch |> 
+  st_drop_geometry() |> 
   filter(!is.na(as.numeric(dbcn))) |> 
-  st_drop_geometry() # protože geometrii nepotřebujeme a jen by zdržovala
+  select(dbcn,
+         chp_14_s,
+         chp_14_s_u)
 
-# tohoto pomocneho objektu využijeme k vyběru všech menších polygonů nad stanicemi
-# výsledky si vytvoříme jako nový sloupec tabulky, abychom měli všechno pěkně přiřazené
-stanice <- stanice |> 
-  group_by(id = dbcn) |> 
-  nest()
+# připravíme se na paralelizovaný výpočet
+catch2 <- catch |> 
+  left_join(stations,
+            join_by(between(chp_14_s, # zde využíváme nové funkce join_by(), která není závislá jen na rovnosti klíčů
+                            chp_14_s_u,
+                            chp_14_s))) |> 
+  filter(!is.na(dbcn.y)) |> 
+  group_by(dbcn.y)
 
-# využíváme znalosti atributové tabulky a podmínku příslušnosti povodí nad vodoměrnou stanicí
-stanice <- stanice |> 
-  mutate(data2 = data |>
-           map(\(x) filter(rozv, chp_14_s >= x$chp_14_s_u & chp_14_s <= x$chp_14_s))
-  )
+# další část je inspirována vinětou na https://cran.rstudio.com/web/packages/multidplyr/vignettes/multidplyr.html
+cluster <- new_cluster(parallelly::availableCores() - 1) # jak je doporučeno ve vinětě; výkon závisí na konkrétním stroji
 
-# pro jednotlivé stanice provedeme sjednocení geometrie
-# převedeme na sf a upravíme název geometrie
-# jelikož tohle trvá docela dlouho, zkusme proces paralelizovat podle našich možností
-library(furrr)
-plan(multisession,
-     workers = availableCores() - 1) # raději si ještě jeden zbývající procesor necháváme stranou (příliš pracovníků se může prát o RAM a zpomalovat tím výpočet)
+# rozčleníme si naší sf kolekci
+catch2 <- catch2 |> 
+  partition(cluster)
 
-stanice <- stanice |> 
-  ungroup() |> # někdy je pro paralelní zpracování nutné tabulku zbavit grupování, jinak se spouští proces jen sekvenčně
-  mutate(data2 = data2 |> 
-           future_map(\(x) st_union(x) |> 
-                        st_sf() |> 
-                        st_set_geometry("geoms"),
-                      .options = furrr_options(seed = NULL, # protože nepotřebujeme generovat pseudonáhodná čísla
-                                               packages = "sf"))) # je potřeba upřesnit, jaké další balíčky poskytují funkce, které ostatní pracovníci (workers) neznají
+# ukážeme otrokům, že využíváme funkce balíčku sf
+cluster_library(cluster,
+                "sf")
 
-# přecházíme zpět na sekvenční zpracování
-plan(sequential)
+# spustíme proces sjednocování polygonů po skupinách definovaných stanicemi
+# měříme též strávený čas
+# a nakonec si necháme zahrát fanfáru, která nás zvukově upozorní, že je vše hotové:-)
+tictoc::tic(); catch2 <- catch2 |> 
+  summarize(geoms = st_union(geometry)) |> # přesně tohle musí být spuštěno paralelně
+  collect() |> 
+  st_sf() |> 
+  rename(id = dbcn.y); tictoc::toc(); beepr::beep(3)
 
-# někdy po sjednocování zbývají ve výsledných polygonech artefakty ve formě děr
-# podívejme se, zda existuje nějaká geometrie, která není validní
-stanice <- stanice |> 
-  select(id, data2) |> 
-  unnest(data2) |> 
-  st_sf()
+# teď již můžeme klastr odstranit
+rm(cluster)
 
-stanice |> 
-  filter(!st_is_valid(geoms))
+# vypočítáme si plochy nově vzniklých polygonů
+catch2 <- catch2 |> 
+  mutate(a = st_area(st_transform(geoms,
+                                  3035)) |> 
+           units::set_units("km2") |> 
+           round(2)) |> # v ČHMÚ je zvykem zaokrouhlovat km2 na dvě desetinná místa
+  arrange(desc(a)) # pro potřeby kreslení, je dobrým zvykem mít největší povodí vespod (tedy v atributové tabulce v řádcích na začátku)
 
-# všechny geometrie jsou validní
+# zbavíme se povodí s nulovou plochou
+catch2 <- catch2 |> 
+  filter(a > units::set_units(0,
+                              "km2"))
 
-# jelikož některá povodí mohou být subpovodími vetších povodí, je vhodné si vrstvu uspořádat tak, aby nejmenší povodí byla v tabulce dole
-# docílíme tím i toho, že se vrstva bude lépe kreslit (s největšími povodími na prvním míste a s nejmenšími dole)
-# alternativou je nechat geometrii a další atributy zahnízděné
-stanice <- stanice |> 
-  mutate(a = st_area(st_transform(geoms, 3035)) |> 
-           units::set_units(km2) |> 
-           round(2)) |> 
-  arrange(desc(a)) |> 
-  relocate(a, .after = id)
-
-# posledním krokem bude odstranění povodí s nulovou plochou
-# takové případy mohou odkazovat na tzv. fiktivní stanice, měření náhonů apod.
-stanice <- stanice |> 
-  filter(a > units::set_units(0, km2)) # musíme porovnávat se správně nastavenými jednotkami
-
-# přitom není potřeba ukládat vrstvu do souboru, který je znám v GIS
-# vhodné je i uložení do RDS souboru (geometrie a vše ostatní po načtení zůstane výhodně zachováno)
-write_rds(stanice,
-          "geodata/povodi_vodomernych_stanic.rds")
+# výsledný objekt uložíme do RDS, abychom s ním mohli v R pracovat dále
+write_rds(catch2,
+          "results/povodi_nad_738_stanicemi.rds",
+          compress = "gz")
