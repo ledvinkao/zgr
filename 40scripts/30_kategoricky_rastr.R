@@ -9,12 +9,12 @@ xfun::pkg_attach2("tidyverse",
                   "terra",
                   "geodata")
 
-# pokud je dem již v adresáři stažený, jen se načte a nic se nestahuje
+# pokud je DEM již v adresáři stažený, jen se načte a nic se nestahuje
 dem <- elevation_30s(country = "CZE",
                      path = "geodata",
                      mask = F)
 
-# vypočíátme orientaci ve stupních
+# vypočítáme orientaci ve stupních
 orientace <- terrain(dem,
                      v = "aspect",
                      filename = "geodata/CZ_asp.tif",
@@ -23,7 +23,7 @@ orientace <- terrain(dem,
 # zjistěme si, čemu se rovná minimum a čemu maximum
 orientace |> 
   values() |> 
-  range(na.rm = T)
+  range(na.rm = T) # ignorujeme cybějící hodnoty (nebo hodnoty buněk, u kterých nebylo možné rozhodnout; je jich opravdu málo)
 
 # pojďme hodnoty rastru převést na kategorie
 kat <- orientace |> 
