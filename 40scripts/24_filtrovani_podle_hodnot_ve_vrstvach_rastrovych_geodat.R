@@ -2,7 +2,7 @@
 # Filtrování podle hodnot ve vrstvách rastrových geodat -------------------
 
 # pokud existují výběry vrstev u rastrových geodat, musí existovat i filtrování
-# autor balíčku terra pro představu uváí, že každou vrstvu si lze představit jako individuální sloupec tabulky
+# autor balíčku terra pro představu uvádí, že každou vrstvu si lze představit jako individuální sloupec tabulky
 # proto lze použít funkci filter() podobně jako u tabulek
 
 # nejprve načteme potřebné balíčky
