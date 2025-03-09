@@ -39,8 +39,9 @@ crs(kraje) == crs(sklon)
 kraje <- extract(sklon, # zde je zvykem, že na prvním míste je vždy rastr
                  kraje,
                  fun = median, # lze ale nastavovat jakoukoliv anonymní funkci
-                 bind = T,
-                 ID = F) |> # výsledkem je nativní vektorový objekt balíčku terra (SpatVector)
-  st_as_sf() # ten lze převést na simple feature
-
+                 bind = T) |> # výsledkem je nativní vektorový objekt balíčku terra (SpatVector)
+  st_as_sf() |> # ten lze převést na simple feature
+  as_tibble() |> # a dále u něj měnit třídu na tibble
+  st_sf()
+  
 # nastavení argumentu exact = T sice dá přesné podíly buněk podle hranice polygonu, ale výpočet pak trvá mnohem déle
