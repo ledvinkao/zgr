@@ -1,7 +1,7 @@
 
 # Funkce extract() pro body -----------------------------------------------
 
-# jak již bylo naznačeno, funkci extract lze využívat i pro jiné typy vektorových geodat, než jsou polygony
+# jak již bylo naznačeno, funkci extract() lze využívat i pro jiné typy vektorových geodat, než jsou polygony
 # ukažme význam této funkce pro body (např. lokality vodoměrných stanic v Česku)
 
 # načteme potřebné balíčky
