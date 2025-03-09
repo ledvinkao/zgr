@@ -1,7 +1,7 @@
 
 # Funkce extract() pro body -----------------------------------------------
 
-# jak již bylo naznačeno, funkci extract lze využívat i pro jiné typy vektorových dat, než jsou polygony
+# jak již bylo naznačeno, funkci extract lze využívat i pro jiné typy vektorových geodat, než jsou polygony
 # ukažme význam této funkce pro body (např. lokality vodoměrných stanic v Česku)
 
 # načteme potřebné balíčky
@@ -11,13 +11,7 @@ xfun::pkg_attach2("tidyverse",
                   "geodata")
 
 # načteme soubor s metadaty vodoměrných stanic
-qdmeta <- read_rds("metadata/qdmeta2023.rds")
-
-# převedeme na simple feature collection
-qdmeta <- st_as_sf(qdmeta,
-                   coords = c("UTM_X",
-                              "UTM_Y"),
-                   crs = 32633)
+meta <- read_rds("metadata/wgmeta2023.rds")
 
 # u bodů nemá argument fun opodstatnění, jako spíše argument method
 # my ale ponecháme jednoduché extrahování
@@ -26,8 +20,10 @@ dem <- elevation_30s(country = "CZE",
                      path = "geodata",
                      mask = F)
 
-qdmeta <- extract(dem,
-                  qdmeta |> 
-                    st_transform(crs(dem)), # dědíme crs rastru
-                  bind = T) |> 
-  st_as_sf()
+meta <- extract(dem,
+                meta |> 
+                  st_transform(crs(dem)), # dědíme crs rastru
+                bind = T) |> 
+  st_as_sf() |> 
+  as_tibble() |> 
+  st_sf()
