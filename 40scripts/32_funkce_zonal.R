@@ -42,8 +42,8 @@ sklon_kat
 kraje <- kraje()
 
 # spojíme do jedné rastrové sady
-# při rasterizaci polygonů vybíráme jako rastr opět objekt sklon_kat, abychom měli stejnou geometrii´
-# z vektoru s i pro definici pole bybereme např. název kraje
+# při rasterizaci polygonů vybíráme jako rastr opět objekt sklon_kat, abychom měli stejnou geometrii
+# z vektoru si pro definici pole bybereme např. název kraje
 sklon_kat <- c(sklon_kat,
                rasterize(kraje,
                          sklon_kat,
@@ -61,9 +61,9 @@ vysledek <- vysledek |>
                names_to = "sklon_kat",
                values_to = "plocha") |> 
   mutate(plocha = units::set_units(plocha,
-                                    m2),
+                                    "m2"),
          plocha = units::set_units(plocha,
-                                    km2))
+                                   "km2"))
 
 vysledek <- vysledek |> 
   group_by(NAZ_CZNUTS3) |> 
@@ -71,4 +71,4 @@ vysledek <- vysledek |>
          procenta = units::set_units(procenta, "%") |> 
            round(2))
 
-# výpočet ploch tímto způsobem je správnější, neboť uvažuje rozdílné plochy buněk rastru
+# výpočet podílů tímto způsobem je správnější, neboť uvažuje rozdílné plochy buněk rastru
