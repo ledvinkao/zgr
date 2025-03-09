@@ -1,7 +1,11 @@
 
-# Tvorba tematické mapy z webu kurzu --------------------------------------
+# Tvorba tematické mapy pro web kurzu -------------------------------------
 
-# načteme potřebné balíčky (najednou)
+# mapy v R lze tvořit i za využití jiných balíčků kromě tmap
+# v oblibě je např. přístup ggplot v kombinaci s dalšími (pro přidání měřítka, směrovky apod.)
+# ukažme si, jak na to tímto způsobem a vytvořme mapu, která by mohla být na webu kurzu:-)
+
+# načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
                   "RCzechia",
                   "czso",
@@ -10,7 +14,7 @@ xfun::pkg_attach2("tidyverse",
 # předpokládá se dobré připojení k internetu, protože podkladová data jsou zde stahována
 
 # zisk vrstvy s okresy
-# ještě převádíme na přehlednější formát
+# ještě převádíme na přehlednější formát tibble
 okresy <- okresy() |> 
   as_tibble() |> 
   st_sf()
@@ -21,6 +25,7 @@ kat <- czso_get_catalogue()
 
 # protože nevíme, jak se tabulka přesně jmenuje, zkusíme si výběr aspoň zúžit
 colnames(kat)
+
 kat |> 
   mutate(dataset = str_to_lower(description)) |> 
   filter(str_detect(description, "sčítání")) |> 
@@ -57,7 +62,7 @@ okresy <- okresy |>
 # jednotky převedeme na km2 a jednotek se raději pro další výpočty zbavíme (někdy jednotky vadí)
 okresy <- okresy |> 
   mutate(a = st_area(st_transform(geometry, 3035)) |> 
-           units::set_units(km2) |> 
+           units::set_units("km2") |> 
            units::drop_units())
 
 # pomocí funkcionálního programování si vytáhneme procenta změn (rok 2001 = 100 %)
@@ -106,10 +111,10 @@ p <- ggplot(okresy) +
                          which_north = "true") +
   annotation_scale(location = "bl")
 
-# a protože pracujeme v R projektu můžeme se při ukládání souboru odkazovat relativně
+# a protože pracujeme v R projektu, můžeme se při ukládání souboru odkazovat relativně
 # předpokládáme, že máme složku v projektu s názvem figs
 # nastavíme velikost stránky A5 na šířku
-ggsave("figs/mapa_kurzu.png",
+ggsave("results/mapa_kurzu.png",
        p,
        width = 21,
        height = 14.85,
