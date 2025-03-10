@@ -43,7 +43,7 @@ tm_shape(republika() |>
 
 # zkusme posunout body o 10 km na západ a o 100 km na jih
 o3_posun <- o3 |> 
-  mutate(geometry = geometry + c(-10000, -100000)) |> 
+  mutate(geometry = geometry + c(-10000, -10000)) |> 
   st_set_crs(32633) # zdá se, že díky přičítání se ztrácí údaj o crs, tak jej opět definujeme
 
 # vykreslíme
@@ -51,7 +51,6 @@ tm_shape(republika() |>
            st_transform(32633)) + 
   tm_borders(lwd = 3,
              col = "purple") +
-  tm_shape(o3_posun,
-           is.main = T) +
+  tm_shape(o3_posun) +
   tm_dots(col = "grey20",
           size = 0.2)
