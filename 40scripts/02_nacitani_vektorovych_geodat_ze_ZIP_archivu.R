@@ -18,8 +18,8 @@ st_layers("/vsizip/geodata/dib_A05_Vodni_nadrze.zip")
 nadrze <- st_read("/vsizip/geodata/dib_A05_Vodni_nadrze.zip",
                   options = "ENCODING=windows-1250")
 
-# objevuje se varování, že v ZIP souboru je více souborů k načtení a že byl vybran ten první
-# to nám ale v tuto chvíli vůbec nevadí
+# objevuje se varování, že v ZIP souboru je více souborů k načtení a že byl vybrán ten první
+# to nám ale v tuto chvíli vůbec nevadí (jinak se varování lze zbavit specifikací jména vrstvy v argumentu layer)
 # jaký je rozdíl v načteném objektu oproti tomu ze skriptu 01?
 
 # výsledek nemá třídu tibble, která je mnohem přehlednější
