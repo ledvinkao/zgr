@@ -134,12 +134,17 @@ nadrze_znovu <- read_rds("geodata/nadrze_utf8.rds")
 nadrze_znovu
 
 # vektorové vrstvy v ZIP souboru není ani třeba rozbalovat, lze se podívat rovnou na vrstvy schované v ZIP souboru
-# a za určitých podmínek i do souborů na internetu, bez předhozího stažení - viz řetězení na: https://gdal.org/en/stable/user/virtual_file_systems.html
+# a za určitých podmínek i do souborů na internetu, bez předhozího stažení - viz popis řetězení na: https://gdal.org/en/stable/user/virtual_file_systems.html
 nadrze2 <- read_sf("/vsizip/geodata/dib_a05_vodni_nadrze.zip",
                    options = "ENCODING=WINDOWS-1250")
 
 # funkcí st_layers() lze prohlížet vrstvy uvnitř souboru
 st_layers("/vsizip/geodata/dib_a05_vodni_nadrze.zip")
+
+# a díky tomu i konkrétní vrstvu specifikovat
+nadrze2 <- read_sf("/vsizip/geodata/dib_a05_vodni_nadrze.zip",
+                   options = "ENCODING=WINDOWS-1250",
+                   layer = "A05_Vodni_nadrze") # můžeme vybrat i "druhou" vrstvu - díky tomu lze takto načítat i samostatnou dbf tabulku se správným kódováním (jako data frame)
 
 # mnohem lépe lze s více vrstvami zacházet za využítí geopackage
 st_layers("geodata/morava.gpkg")
