@@ -11,7 +11,7 @@ xfun::pkg_attach2("tidyverse",
                   "sf",
                   "arcgislayers")
 
-# jedním z mnohých webů, které nabízí otevřená vodohospodářská geodata prostřednictvím takových služeb je portál https://voda.gov.cz/
+# jedním z mnohých webů, které nabízí otevřená vodohospodářská geodata prostřednictvím takových služeb, je portál https://voda.gov.cz/
 # zde můžeme např. nalézt odkaz na vektorovou vrstvu s osovým modelem vodních toků na území Česka a bezprostředního okolí
 # k načtení potřebujeme znát odkaz, který lze u detailů vrstvy najít
 # nesmíme zapomenout také dodat číslo vrstvy (tím musí odkaz končit)
