@@ -1,7 +1,7 @@
 
 # Ořezávání linií polygony ------------------------------------------------
 
-# ačkoliv v jiných GIS softwarech známe tuto činnost pod názvem 'clipping', v R (lépe řečeno v balíčku sf) tuto aktivitu nahrazuje funkce st_intersection()
+# ačkoliv v jiných GIS softwarech známe tuto činnost pod názvem "clipping", v R (lépe řečeno v balíčku sf) tuto aktivitu nahrazuje funkce st_intersection()
 # ta kromě geometrie řeší také atributy
 # pozor! neplést si tuto funkci s funkcí st_intersects(), která dělá něco jiného
 
