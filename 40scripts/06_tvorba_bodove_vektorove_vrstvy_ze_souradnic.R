@@ -24,7 +24,7 @@ meta <- meta$data$data$values |>
   set_names(meta$data$data$header |> 
               str_split(",") |> 
               unlist()) |> 
-  janitor::clean_names() # názvy sloupců upravíme na rozumnější
+  janitor::clean_names() # názvy sloupců upravíme na rozumnější (musí být nainstalován balíček janitor)
 
 # vektorovou vrstvu (simple feature collection) získáme pomocí funkce st_as_sf()
 # funkce st_as_sf() je rozdílná od funkce st_sf()
@@ -36,15 +36,7 @@ meta <- meta |>
            crs = 4326) |> 
   st_transform(32633) # raději transformujeme, abychom předešli problémům se záměnou pořadí souřadnic, jak to dělají dnešní verze knihovny PROJ
 
-# ještě můžeme upravit textové řetězce, ať obsahují správně znaky NA
-meta <- meta |> 
-  mutate(across(where(is.character),
-                \(x) if_else(x == "",
-                             NA,
-                             x))
-  )
-
 # a uložíme pro další práci
 meta |> 
-  write_rds("metadata/wgmeta2023.rds",
+  write_rds("metadata/wgmeta2024.rds",
             compress = "gz")
