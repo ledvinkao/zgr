@@ -2,17 +2,14 @@
 # Tvorba zcela nové vektorové vrstvy --------------------------------------
 
 # dejme tomu, že si pro další práci budeme muset vytvořit polygon (např. obdélník), který definuje náš zájmový region
-# toto je velmi častý případ, kdy např. za pomoci takového polygonu stahujeme z nějakého serveru další geografická data
+# toto je velmi častý případ, kdy např. za pomoci takového polygonu stahujeme z nějakého serveru další geodata
 
 # načteme balíčky
 xfun::pkg_attach2("tidyverse",
                   "RCzechia", # balíček sf se načítá automaticky
-                  "sfheaders")
+                  "sfheaders") # přestože balíček sf obsahuje pro tyto úlohy podobné funkce také, balíček sfhehaders nabízí více argumentů
 
 # dejme tomu, že zájmovým regionem je sférický obdélník rozkládající se mezi 16,35-18,85° v.z.d. a 49,3-50,2° s.z.š.
-
-# balíček sf určitě nabízí možnosti tvorby vlastního polygonu
-# ale jednodušší cesta je zřejmě přes funkci sfc_polygon() z balíčku sfheaders
 
 # nejprve vytvoříme matici s prvním a posledním řádkem identickým (pro uzavření polygonu)
 mat <- matrix(c(16.35, 49.3,
@@ -24,6 +21,7 @@ mat <- matrix(c(16.35, 49.3,
               byrow = T)
 
 # vytvoříme polygon, který ale ještě nemá souřadnicový systém
+# můžeme se dokonce rozmyslet mezi tvorbou pouhé geometrie (funkce sfg_polygon()) nebo rovnou simple feature s defaultním polem (funkce sf_polygon())
 obdelnik <- sfc_polygon(mat)
 
 # přidáme souřadnicový systém a změníme typ objektu na simple feature
