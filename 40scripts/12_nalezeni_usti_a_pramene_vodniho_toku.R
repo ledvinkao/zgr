@@ -21,7 +21,7 @@ tvltava <- toky |>
   filter(naz_tok == "Teplá Vltava")
 
 # k tomu, abychom mohli aplikovat funkce pro hledání pramene a ústí, je potřeba, aby linie byla typu LINESTRING, ne MULTILINESTRING
-# varování je liché, protože jsme dostali pouze jednu liniii (ale asi je aplikováno vždy)
+# varování je liché, protože dostaneme pouze jednu linii za každou MULTILINESTRING (ale asi je aplikováno vždy)
 tvltava <- tvltava |> 
   st_cast("LINESTRING")
 
@@ -35,7 +35,7 @@ usti <- tvltava |>
   as_tibble() |> # chceme lepší třídu - tibble
   st_sf() # z níž potřebujeme opět získat simple feature
 
-# totéž prvedeme pro pramen
+# totéž provedeme pro pramen
 pramen <- tvltava |> 
   st_endpoint() |> 
   st_sf() |> 
@@ -43,7 +43,7 @@ pramen <- tvltava |>
   as_tibble() |> 
   st_sf()
 
-# polohu ustí i pramene si můžeme vykreslit v dynamické mapě
+# polohu ústí i pramene si můžeme vykreslit v dynamické mapě
 usti <- usti |> 
   mutate(typ = "usti")
 
@@ -54,4 +54,5 @@ dohromady <- bind_rows(usti,
                        pramen)
 
 # dynamické mapy lze kreslit např. následovně
+# balíček mapview musí být nainstalován
 mapview::mapview(dohromady)
