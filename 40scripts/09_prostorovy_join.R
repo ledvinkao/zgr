@@ -11,7 +11,7 @@ xfun::pkg_attach2("tidyverse",
                   "RCzechia") # balíček sf se tímto načítá automaticky
 
 # práce s metadaty
-meta <- read_rds("metadata/wgmeta2023.rds") |> 
+meta <- read_rds("metadata/wgmeta2024.rds") |> 
   st_transform(4326)
 
 # načtení vrstvy administrativních krajů
