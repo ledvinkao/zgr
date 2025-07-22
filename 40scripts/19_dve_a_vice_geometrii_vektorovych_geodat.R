@@ -42,7 +42,7 @@ kraje <- kraje |>
   mutate(obvod = st_perimeter(geom1),
          plocha = st_area(geom2))
 
-# nyní jsme připraveni počítat koeficienty (viz např. Riedl a Zachar (1984, s. 14))
+# nyní jsme připraveni počítat koeficienty (viz např. Riedl a Zachar, 1984, s. 14)
 kraje <- kraje |> 
   mutate(graveli = obvod / 2 / sqrt(pi * plocha))
 
