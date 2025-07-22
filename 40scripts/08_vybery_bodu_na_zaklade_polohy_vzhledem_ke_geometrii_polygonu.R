@@ -13,7 +13,7 @@ xfun::pkg_attach2("tidyverse",
                   "sfheaders")
 
 # nejprve práce s metadaty vodoměrných stanic
-meta <- read_rds("metadata/wgmeta2023.rds") |> 
+meta <- read_rds("metadata/wgmeta2024.rds") |> 
   st_transform(4326) # abychom měli srovnatelné crs
 
 # tvorba obdélníka
@@ -35,7 +35,7 @@ obdelnik <- sfc_polygon(matrix(c(16.35, 49.3,
 stanice_v_obdelniku <- meta[obdelnik, ]
 
 # standardně se vybírá to, co je uvnitř (tiše je aplikována funkce st_intersects())
-# pro opačný výběr je nutné nastavit argument op
+# pro opačný výběr je nutné nastavit argument "op"
 stanice_vne_obdelnika <- meta[obdelnik, op = st_disjoint]
 
 # vykreslime prvni i druhou situaci
