@@ -36,6 +36,13 @@ meta <- meta |>
            crs = 4326) |> 
   st_transform(32633) # raději transformujeme, abychom předešli problémům se záměnou pořadí souřadnic, jak to dělají dnešní verze knihovny PROJ
 
+# může se stát, že některé sloupce s textem budou mít nesprávně označené chybějící hodnoty
+# to lze před ukládáním ošetřit následovně
+meta <- meta |> 
+  mutate(across(where(is.numeric),
+                \(x) if_else(x == "", NA, x))
+  )
+
 # a uložíme pro další práci
 meta |> 
   write_rds("metadata/wgmeta2024.rds",
