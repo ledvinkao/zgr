@@ -6,6 +6,7 @@
 
 # načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
+                  "ggtext", # pro lepší nadpisy grafů, popisky os atd.
                   "RCzechia", # balíček sf je načítán automaticky
                   "arcgislayers")
 
@@ -70,7 +71,9 @@ propojeno <- propojeno |>
 
 ggplot() + 
   geom_sf(data = propojeno,
-          aes(fill = log10(hustota))) + # pro zvýraznění rozdílů (původně km/km2)
+          aes(fill = hustota)) + 
   scale_fill_distiller(palette = "Blues",
-                       direction = 1) +
-  labs(fill = "river density \n(log10)")
+                       direction = 1,
+                       transform = "log10") + # pro zvýraznění rozdílů bez nutnosti transformovat data
+  labs(fill = "river density<br>[km km<sup>-2</sup>]") + 
+  theme(legend.title = element_markdown()) # musí být; jinak předchozí řádek na bázi ggtext nebude fungovat
