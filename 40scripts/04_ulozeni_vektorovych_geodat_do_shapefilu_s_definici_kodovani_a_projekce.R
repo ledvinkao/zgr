@@ -11,7 +11,8 @@ xfun::pkg_attach2("tidyverse",
 
 # znamým způsobem načteme např. vodní nádrže
 nadrze <- read_sf("geodata/dib_a05_vodni_nadrze/a05_vodni_nadrze.shp",
-                  options = "ENCODING=WINDOWS-1250")
+                  options = "ENCODING=WINDOWS-1250",
+                  layer = "a05_vodni_nadrze")
 
 # uložíme do nového shapefilu se standardním kódováním a definicí projekce
 # příponou určujeme, jaký driver se má použít pro ukládání
