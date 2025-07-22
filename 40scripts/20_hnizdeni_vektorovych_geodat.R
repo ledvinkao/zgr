@@ -9,8 +9,7 @@
 
 # načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
-                  "RCzechia", # balíček sf je načítán automaticky
-                  "arcgislayers")
+                  "RCzechia") # balíček sf je načítán automaticky
 
 # načteme kraje
 kraje <- kraje() |> 
@@ -18,7 +17,7 @@ kraje <- kraje() |>
   st_sf()
 
 # načteme metadata stanic a rovnou propojujeme s kraji
-meta <- read_rds("metadata/wgmeta2023.rds") |> 
+meta <- read_rds("metadata/wgmeta2024.rds") |> 
   st_transform(4326) |> 
   st_join(kraje) |> 
   filter(!is.na(NAZ_CZNUTS3)) # zbavujeme se řádků, kde kraj i tak nakonec není
@@ -35,7 +34,7 @@ meta <- meta |>
                            \(x) st_drop_geometry(x) |> 
                              pull(plo_sta) |> 
                              median(x, 
-                                    na.rm = T) |> # kyby se náhodou vyskytla chybějící hodnota
+                                    na.rm = T) |> # kdyby se náhodou vyskytla chybějící hodnota
                              round(2)
   )
   )
