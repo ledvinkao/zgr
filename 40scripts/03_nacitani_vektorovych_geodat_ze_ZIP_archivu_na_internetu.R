@@ -11,7 +11,7 @@ xfun::pkg_attach2("tidyverse",
 # tuto adresu vložíme do naší "načítací" funkce, kde ale navíc použijeme tzv. řetězení prefixů
 
 # vhodné je před načítáním geodat podívat se, co je v archivu nebo ve složce k dispozici
-# funkcí st_layers() s balíčku sf lze takto složky prohlížet
+# funkcí st_layers() z balíčku sf lze takto složky prohlížet
 # demonstrujme na souboru pro Slovesnko, který na stránkách nabízí Evropská agentura pro životní prostředí (EEA)
 st_layers("/vsizip//vsicurl/https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/slovakia-shapefile/at_download/file/slovakia_shapefile.zip")
 
