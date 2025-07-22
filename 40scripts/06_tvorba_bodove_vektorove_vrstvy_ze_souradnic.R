@@ -39,7 +39,7 @@ meta <- meta |>
 # může se stát, že některé sloupce s textem budou mít nesprávně označené chybějící hodnoty
 # to lze před ukládáním ošetřit následovně
 meta <- meta |> 
-  mutate(across(where(is.numeric),
+  mutate(across(where(is.character),
                 \(x) if_else(x == "", NA, x))
   )
 
