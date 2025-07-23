@@ -13,7 +13,7 @@ landsat <- rast(system.file("tif/L7_ETMs.tif",
                             package = "stars"))
 
 # aplikujme funkci as.data.frame()
-# někdy se může hodit dostat do tabulky i souřadnice x a y, tak nastavíme argument xy na pravdu
+# někdy se může hodit dostat do tabulky i souřadnice x a y, tak nastavíme argument "xy" na pravdu
 # starý formát data frame si ještě můžeme převést na třídu tibble
 tab <- as.data.frame(landsat,
                      xy = T) |> # dobré je prostudovat i další nabízené argumenty, jako je možnost získání dlouhého formátu tabulky apod.
