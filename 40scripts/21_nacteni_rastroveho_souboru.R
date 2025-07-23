@@ -2,17 +2,17 @@
 # Načtení rastrového souboru ----------------------------------------------
 
 # k práci s rastrovými geodaty slouží v současném R hlavně balíček terra
-# pro práci s rastrovými geodaty existuje také balíček stars, ale je trochu složitější s ním pracovat
+# pro práci s rastrovými geodaty existuje také balíček stars, ale je trochu složitější s ním pracovat, protože je spíše určený pro pole a datové krychle
 # manipulaci s rastrovými geodaty ve smyslu tidyverse (a také kreslení rastrových podkladů map) umožňuje balíček tidyterra
 # s těmito balíčky přichází příkladová data, čehož s výhodou využijeme
-# autor balíčku terra dokonce pro zisk geodat vytvořil separátní balíček s názvem geodata
+# autor balíčku terra dokonce pro zisk geodat z internetu vytvořil separátní balíček s názvem geodata
 # ukažme, jak lze načíst soubor s rastrovými geodaty pomocí funkce rast() balíčku terra
 
 # nejprve načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
                   "terra")
 
-# podívejme se, jaké tif soubory přichází s balíčkem stars a jaké s balíčkem terra
+# podívejme se, jaké GeoTIFF soubory přichází s balíčkem stars a jaké s balíčkem terra
 dir(system.file(package = "stars"),
     pattern = "\\.tif$",
     recursive = T,
