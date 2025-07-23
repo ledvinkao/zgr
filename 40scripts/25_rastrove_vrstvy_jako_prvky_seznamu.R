@@ -36,7 +36,7 @@ tictoc::tic(); landsatl |>
                         str_c("results/",
                               names(x),
                               ".tif"),
-                        overwrite = T)); tictoc::toc() # overwrite nastavujeme, abychom se zbavili hlášek, že určitý soubor již existuje (prostě jej přepíšeme)
+                        overwrite = T)); tictoc::toc() # "overwrite" nastavujeme, abychom se zbavili hlášek, že určitý soubor již existuje (prostě jej přepíšeme)
 
 # schvalně, co je rychlejší
 nms <- str_c("results/",
