@@ -1,7 +1,7 @@
 
 # Výpočet indexu NDVI -----------------------------------------------------
 
-# asi nečastější se satelitními snímky jsou výpočty spektrálích indexů
+# asi nečastější s optickými satelitními snímky jsou výpočty spektrálích indexů
 # jedním z nejužívanějších (a snad i nadužívaných) indexů je normalizovaný diferencovaný vegetační index (NDVI)
 # ten vychází ze dvou pásem - blízkého infračerveného (u Landsatu 7 pásmo 4) a červeného (u Landsatu 7 pásmo 3)
 
