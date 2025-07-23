@@ -48,3 +48,5 @@ tictoc::tic(); landsat |>
               overwrite = T); tictoc::toc()
 
 # je třeba volit specifické strategie v závislosti na úloze a na stroji, na kterém hodláme data zpracovávat
+
+# poznamenejme, že pro účely aplikací jiných funkcí může být vícevrstvý rastr konvertován také na pole
