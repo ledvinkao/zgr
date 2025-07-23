@@ -17,7 +17,7 @@ ndvi <- (landsat[[4]] - landsat[[3]]) / (landsat[[4]] + landsat[[3]])
 
 names(ndvi) <- "ndvi"
 
-# přidáme vrstvu ndvi do objektu landsat a přesvedčíme se, zda jsme postupovali správně
+# přidáme vrstvu ndvi do objektu landsat a přesvědčíme se, zda jsme postupovali správně
 landsat <- landsat |> 
   c(ndvi)
 
@@ -30,4 +30,4 @@ ggplot() +
                        direction = -1) +
   labs(fill = "ndvi")
 
-# podmínkou pro spojení je samozřejmě stejná geometrie (crs, horizontální rozlišení apod.)
+# podmínkou pro spojení je samozřejmě stejná geometrie (crs, horizontální rozlišení, rozsah apod.)
