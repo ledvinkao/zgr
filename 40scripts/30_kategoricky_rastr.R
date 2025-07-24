@@ -50,14 +50,14 @@ orientace_kat <- rast(orientace)
 # nyní nastavujeme hodnoty kategorií
 values(orientace_kat) <- kat
 
-# balíček terra má vlastní palety, jedna z nich je i pro orientaci svahu
+# balíček terra má vlastní palety barev, jedna z nich je i pro orientaci svahu
 plot(orientace_kat,
      col = map.pal("aspect",
                    n = 4))
 
 # poznamenejme, že namísto kombinace funkcí values() a cut() je možné použít i funkci terra::classify() (není možno nastavovat labely) nebo terra::subst() (je možno nastavovat labely)
 
-# balíček tidyterra nabízí další vhodné palety barev pro kreslení ve smyslu ggplot
+# balíček tidyterra nabízí další vhodné palety barev pro kreslení ve smyslu ggplot2
 library(tidyterra)
 
 ggplot() + 
