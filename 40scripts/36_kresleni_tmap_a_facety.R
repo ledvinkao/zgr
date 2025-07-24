@@ -1,11 +1,11 @@
 
 # Kreslení map v R - tmap a facety ----------------------------------------
 
-# jak známo, i v ggplot pojetí bychom si mohli nakreslit mapu (pomocí funkce geom_sf()) s využitím facet
-# ggplot strategie ale nedovoluje uvolnění měřítek na osách při použití funkce, takže je vhodné sáhnout po jiném nástroji
+# jak známo, i v ggplot2 pojetí bychom si mohli nakreslit mapu (pomocí funkce geom_sf()) s využitím facet
+# ggplot2 strategie ale nedovoluje uvolnění měřítek na osách při použití funkce, takže je vhodné sáhnout po jiném nástroji
 
 # pro tento příklad najdeme ve vektorové vrstvě s toky čtyři řeky: Teplou Vltavu, Studenou Vltavu, Berounku a Mandavu
-# každá řeka ostane svůj vlastní panel obrázku
+# každá řeka dostane svůj vlastní panel obrázku
 
 # načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
@@ -23,8 +23,8 @@ toky_vyb <- toky |>
   filter(str_detect(naz_tok, "^Teplá Vltava|^Studená Vltava|^Berounka|^Mandava"))
 
 # vykreslíme
-tm_shape(toky_vyb |> 
-           st_transform(4326)) + # raději transformujeme, ať souřadnicová síť nevypadá divně
+tm_shape(toky_vyb,
+         crs = 4326) + # raději vybíráme crs pro přirozenější kreslení zeměpisné sítě 
   tm_graticules() + # takto přidáme souřadnicovou síť
   tm_lines(col = "darkblue") +
   tm_facets("naz_tok",
