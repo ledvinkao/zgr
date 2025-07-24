@@ -7,7 +7,7 @@
 # demonstrujme tedy přidání těchto mapových prvků pomocí funkcí balíčku tmap
 # navážeme přitom na skript 36, kde již máme započatou práci s facetami
 
-# načteme potřebné funkce
+# načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
                   "RCzechia",
                   "arcgislayers",
@@ -17,10 +17,8 @@ toky <- arc_read("https://agrigis.cz/server/rest/services/ISVSVoda/osy_vodnich_l
   as_tibble() |> 
   st_sf()
 
-# vybrané toky rovnou transformujeme
 toky_vyb <- toky |> 
-  filter(str_detect(naz_tok, "^Teplá Vltava|^Studená Vltava|^Berounka|^Mandava")) |> 
-  st_transform(4326)
+  filter(str_detect(naz_tok, "^Teplá Vltava|^Studená Vltava|^Berounka|^Mandava"))
 
 # zkusíme přidat i hranice Česka
 h <- republika()
@@ -32,16 +30,17 @@ plot <- tm_shape(h) +
   tm_borders(col = "purple",
              lwd = 3) + 
   tm_shape(toky_vyb,
-           is.main = T) + 
+           is.main = T,
+           crs = 4326) + 
   tm_lines(col = "darkblue") + 
   tm_facets("naz_tok",
             ncol = 2) + 
   tm_compass(position = c("right",
-                          "top")) + 
-  tm_scalebar(position = c("LEFT",
-                           "BOTTOM")) +
-  tm_layout(compass.show.labels = F) # aby se neukazovalo písmeno N pro sever:-)
+                          "top"),
+             show.labels = F) + # aby se neukazovalo písmeno N pro sever:-)
+  tm_scalebar(position = c("LEFT", # na velikosti písmen záleží
+                           "BOTTOM"))
 
-# výsledek můžeme uložit pomocí funkce tmap_save()
+# výsledek můžeme uložit pomocí funkce tmap_save(), kde si ještě můžeme hrát s výškou, šířkou apod.
 tmap_save(plot,
           "results/vybrane_reky.pdf")
