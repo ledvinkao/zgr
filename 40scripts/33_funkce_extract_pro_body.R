@@ -11,9 +11,9 @@ xfun::pkg_attach2("tidyverse",
                   "geodata")
 
 # načteme soubor s metadaty vodoměrných stanic
-meta <- read_rds("metadata/wgmeta2023.rds")
+meta <- read_rds("metadata/wgmeta2024.rds")
 
-# u bodů nemá argument fun opodstatnění, jako spíše argument method
+# u bodů nemá argument "fun" opodstatnění, jako spíše argument "method"
 # my ale ponecháme jednoduché extrahování
 # raději pamatujeme i na rozdílné crs (i když dnešní verze balíčku terra různé crs povolují)
 dem <- elevation_30s(country = "CZE",
