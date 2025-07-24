@@ -2,14 +2,14 @@
 # Tvorba tematické mapy pro web kurzu -------------------------------------
 
 # mapy v R lze tvořit i za využití jiných balíčků kromě tmap
-# v oblibě je např. přístup ggplot v kombinaci s dalšími (pro přidání měřítka, směrovky apod.)
+# v oblibě je např. přístup ggplot2 v kombinaci s dalšími (pro přidání měřítka, směrovky apod.)
 # ukažme si, jak na to tímto způsobem a vytvořme mapu, která by mohla být na webu kurzu:-)
 
 # načteme potřebné balíčky
 xfun::pkg_attach2("tidyverse",
                   "RCzechia",
-                  "czso",
-                  "ggspatial")
+                  "czso", # pro načítání dat Českého statistického úřadu
+                  "ggspatial") # pro přidání grafického měřítka a směrovky
 
 # předpokládá se dobré připojení k internetu, protože podkladová data jsou zde stahována
 
@@ -58,7 +58,7 @@ okresy <- okresy |>
             join_by(KOD_OKRES == okres))
 
 # pro výpočet hustoty zalidnění potřebujeme znát plochy okresů
-# k tomu využijeme plochojevné zobrazení, které se využívá napříc EU pro statistické výpočty
+# k tomu využijeme plochojevné zobrazení, které se využívá napříč EU pro statistické výpočty
 # jednotky převedeme na km2 a jednotek se raději pro další výpočty zbavíme (někdy jednotky vadí)
 okresy <- okresy |> 
   mutate(a = st_area(st_transform(geometry, 3035)) |> 
@@ -74,7 +74,7 @@ okresy <- okresy |>
   )
 
 # a kreslíme mapu
-# # složitější labeling volíme kvůli češtině (chceme se zbavit desetinných teček apod.)
+# složitější labeling volíme kvůli češtině (chceme se zbavit desetinných teček apod.)
 # můžeme si také povšimnout, že při labelingu lze využít anonymní funkce, které naopak využívají hodnot v argumentu breaks
 ggplot(okresy) +
   geom_sf(aes(fill = zmena)) +
@@ -114,7 +114,7 @@ p <- ggplot(okresy) +
 # a protože pracujeme v R projektu, můžeme se při ukládání souboru odkazovat relativně
 # předpokládáme, že máme složku v projektu s názvem figs
 # nastavíme velikost stránky A5 na šířku
-ggsave("results/mapa_kurzu.png",
+ggsave("figs/mapa_kurzu.png",
        p,
        width = 21,
        height = 14.85,
