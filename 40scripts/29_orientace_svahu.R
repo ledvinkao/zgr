@@ -13,7 +13,7 @@ xfun::pkg_attach2("tidyverse",
                   "tidyterra",
                   "geodata")
 
-# využijeme funkci elevation_30s, kde ještě specifikujeme, že se chceme zaměřit na území Česka
+# využijeme funkci elevation_30s(), kde ještě specifikujeme, že se chceme zaměřit na území Česka
 # zakážeme maskování
 dem <- elevation_30s(country = "CZE",
                      path = "geodata",
@@ -30,6 +30,7 @@ ggplot() +
           linewidth = 1.5)
 
 # zjistěme si z modelu orientaci svahů ve stupních
+# rovnou ukládáme výsledek do souboru, a kreslíme
 orientace <- terrain(dem,
                      v = "aspect",
                      filename = "geodata/CZ_asp.tif",
