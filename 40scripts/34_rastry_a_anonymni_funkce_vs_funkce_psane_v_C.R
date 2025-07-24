@@ -30,6 +30,7 @@ tictoc::tic(); kraje_a <- extract(dem,
   as_tibble() |> 
   st_sf(); tictoc::toc()
 
+# nyní srovnejme s funkcí implementovanou v C++
 tictoc::tic(); kraje_b <- extract(dem,
                                   kraje,
                                   fun = mean,
