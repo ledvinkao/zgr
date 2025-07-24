@@ -3,7 +3,7 @@
 
 # v současnoti je pro kreslení map v R asi nepropracovanější balíček tmap
 # vlastně ani zpočátku nemuí jít o mapy, jako spíše o vykreslení si schématu napovídajícího, zda jsme s našimi analýzami na správném území
-# balíček tmap má jednu skvělou vlastnost, a sice, že si geodata můžeme kreslit do dynamických znázornění
+# balíček tmap má jednu skvělou vlastnost, a sice, že si geodata můžeme kreslit do dynamických znázornění (s výhodnými podkladovými mapami)
 
 # vykresleme si např. polygony administrativních krajů Česka
 
@@ -16,7 +16,7 @@ kraje <- kraje() |>
   as_tibble() |> 
   st_sf()
 
-# nejprve statické znázornění (podobně jako u ggplot řetězíme operátorem +)
+# nejprve statické znázornění (podobně jako u ggplot2 řetězíme operátorem +)
 tm_shape(kraje) + 
   tm_polygons(col = "purple",
               fill = "magenta",
