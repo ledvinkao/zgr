@@ -25,7 +25,7 @@ sklon_kat <- classify(sklon,
                       rcl = matrix(c(0, 5, 1,
                                      5, 10, 2,
                                      10, 15, 3,
-                                     15, Inf, 4), # také hodnota Inf (nekonečno) je brána jako hodnota
+                                     15, Inf, 4), # také hodnota Inf (nekonečno) je brána jako reálná hodnota
                                    ncol = 3,
                                    byrow = T),
                       include.lowest = T)
