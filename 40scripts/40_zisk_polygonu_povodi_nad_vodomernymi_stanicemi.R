@@ -3,7 +3,7 @@
 
 # v hydrologii často potřebujeme pracovat s povodími nad vodoměrnými stanicemi
 # důvodem může být porovnání průtokové časové řady s řadami získanými z klimatologických měření (např. ve formě gridu)
-# existují sice podrobné vrstvy rozvodnic pro území Česka (např. povodí 4. řádu), ale ta v tomto smyslu hydrologa neuspokojí
+# existují sice podrobné vrstvy rozvodnic pro území Česka (např. povodí 4. řádu), ale ty v tomto smyslu hydrologa neuspokojí
 # budeme si tedy muset takovou vrstvu odvodit sami
 # předpokládá se velmi dobré připojení k internetu, jelikož potřebné geografické vrstvy budeme stahovat
 
@@ -38,7 +38,7 @@ catch2 <- catch |>
                             chp_14_s_u,
                             chp_14_s))) |> 
   filter(!is.na(dbcn.y)) |> 
-  group_by(dbcn.y)
+  group_by(dbcn.y) # grupování je důležité pro rozčlenění
 
 # další část je inspirována vinětou na https://cran.rstudio.com/web/packages/multidplyr/vignettes/multidplyr.html
 cluster <- new_cluster(parallelly::availableCores() - 1) # jak je doporučeno ve vinětě; výkon závisí na konkrétním stroji
