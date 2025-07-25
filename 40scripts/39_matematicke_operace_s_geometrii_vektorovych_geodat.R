@@ -14,8 +14,8 @@ xfun::pkg_attach2("tidyverse",
                   "RCzechia", # balíček sf je načítán automaticky
                   "tmap")
 
-# abychom se nezdržovali, metadata máme již připravená v Apache Parquet souboru airquality_metadata_pq
-# s Apache Parquet soubory lze zacházet podobně jako s databázemi
+# abychom se nezdržovali, metadata (stav k březnu 2025) máme již připravená v Apache Parquet souboru airquality_metadata_pq
+# s Apache Parquet soubory lze zacházet podobně jako s SQL databázemi
 # zavedeme pointer k souboru
 aqmeta <- open_dataset("metadata/airquality_metadata_pq")
 
