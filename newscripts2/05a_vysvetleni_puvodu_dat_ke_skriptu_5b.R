@@ -53,7 +53,7 @@ tab <- tab |>
            crs = 4326)
 
 # prohlédneme výsledek
-# v souboru s metadaty vodomerných stanic (tedy "metadata/wgmeta2023.rds") je ještě crs transformován do EPSG:32633
+# v souboru s metadaty vodomerných stanic (tedy "metadata/wgmeta2024.rds") je ještě crs transformován do EPSG:32633
 tab
 
 

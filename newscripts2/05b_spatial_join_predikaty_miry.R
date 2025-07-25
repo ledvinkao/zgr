@@ -8,7 +8,7 @@ xfun::pkg_attach2("tidyverse",
 
 # načteme metadata vodoměrných stanic
 # zdroj: https://opendata.chmi.cz/
-stanice <- read_rds("metadata/wgmeta2023.rds")
+stanice <- read_rds("metadata/wgmeta2024.rds")
 
 # polygony působnosti poboček ČHMÚ
 # zdroj: https://chmi.maps.arcgis.com/home/index.html
