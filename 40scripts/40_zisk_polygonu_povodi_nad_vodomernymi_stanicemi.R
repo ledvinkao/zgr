@@ -61,7 +61,7 @@ tictoc::tic(); catch3 <- catch2 |>
   unnest(rest) |> 
   st_sf() |> # protože výsledek funkce unnest() je tibble
   st_set_geometry("geoms") |> # přejmenujeme sloupec s geometrií
-  rename(dbcn = dbcn.y); tictoc::toc(); beepr::beep(3)
+  rename(id = dbcn.y); tictoc::toc(); beepr::beep(3)
 
 # vypočítáme si plochy nově vzniklých polygonů
 catch3 <- catch3 |> 
