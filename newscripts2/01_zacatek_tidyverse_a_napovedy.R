@@ -13,10 +13,10 @@ xfun::pkg_attach("tidyverse", # když nechci načítat celý balíček xfun, vyu
 
 # protože argument install = T je velmi častou volbou, existuje i varianta funkce xfun::pkg_attach2()
 # tato funkce má nastavený argument install = T automaticky
-xfun::pkg_attach("tidyverse",
-                 "sf", 
-                 "terra", 
-                 "tidyterra")
+xfun::pkg_attach2("tidyverse",
+                  "sf", 
+                  "terra", 
+                  "tidyterra")
 
 
 # Budeme hodně využívat tidyverse slovesa ---------------------------------
