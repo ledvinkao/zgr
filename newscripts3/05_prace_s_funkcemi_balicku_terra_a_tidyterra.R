@@ -529,6 +529,9 @@ extrahovani_dem |>
 # existují i funkce pro tvorbu kategorického rastru (viz také bonusové R skripty 30 a 32)
 ?zonal
 
+# poznamenejme, že existuje též balíček exactexracr, jehož funkce umožňují rychlé agregace rastrových hodnot přes polygony
+# funkce exactextractr::exact_extract() urychluje i práci s neplochojevnými rastry a rovněž tak počítá s neúplnými plochami rastrových buněk, které zasahují do polygonu jen zčásti
+
 
 # Pomocné funkce balíčku tidyterra ----------------------------------------
 
@@ -602,6 +605,8 @@ orientace <- terrain(dem,
                      v = "aspect")
 
 plot(orientace)
+
+# pokud někoho zajímají další terénní analýzy nenabízené balíčkem terra, je odkazován např. na funkce balíčků spatialEco nebo whitebox
 
 
 # Krátce k DPZ aplikacím --------------------------------------------------
