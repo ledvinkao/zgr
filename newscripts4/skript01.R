@@ -653,3 +653,22 @@ povodi <- povodi |>
 povodi
 
 # pokud si již s opravou geometrie nebudeme vědět rady, můžeme zkusit vypnout sférickou geometrii funkcí sf_use_s2(FALSE)
+
+
+# Dodatky k paralelizaci --------------------------------------------------
+
+# asi nejosvědčenější postup paralelizace na OS Windows je dnes kombinace tzv. daemonů z balíčku mirai s vkládáním paralelizované funkce do dunkce in_parallel(), která je navíc vkládána do funkcí palíčku purrr, jako map(), walk() apod.
+# počet logických jader (CPU), a tedy i počet nastavitelných daemonů můžeme zjistit následovně
+parallelly::availableCores()
+
+# nebo následovně
+parallel::detectCores()
+
+# daemony pak můžeme nastavit následovně (postup je takto i adaptován na stroj, se kterým jsme zatím nemuseli mít tu čest)
+mirai::daemons(parallelly::availableCores() - 1) # doporučuje se jedno jádro si nechat na jiné procesy
+
+# před spuštěním části kódu s funkcí in_parallel() je potřeba si daemony vyžádat
+mirai::require_daemons()
+
+# vše se resetuje nastavením nulového počtu daemonů nebo restartování sezení (session) - např. zkratkou CTRL+SHIFT+F10 v RStudio
+mirai::daemons(0)
