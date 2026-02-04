@@ -17,7 +17,7 @@ st_layers("/vsizip//vsicurl/https://www.eea.europa.eu/data-and-maps/data/eea-ref
 
 # a načteme jednu z vrstev
 sk <- read_sf("/vsizip//vsicurl/https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/slovakia-shapefile/at_download/file/slovakia_shapefile.zip",
-                  layer = "sk_10km")
+              layer = "sk_10km")
 
 # podrobnosti k těmto postupům lze nalézt na stránkách knihovny GDAL, která je při tomto načítání vektorových geodat využívána
 # viz https://gdal.org/en/latest/user/virtual_file_systems.html
